@@ -42,11 +42,7 @@ function handleWordCollection(inputCollection) {
 }
 
 var formatConvert = {
-	arrayEntryToYatqa: function(input) {
-		let name = input[0];
-		let reason = input[1];
-		return "name=" + name + " duration=0 banreason=" + reason + " ";
-	}
+
 }
 
 var outputStuff = {
@@ -60,7 +56,9 @@ var outputStuff = {
 }
 
 function startSequentialProcess() {
-	
+	let bla = handleWordCollection(words);
+	bla = yatqaConverter.handleWordCollection(bla);
+	return bla;
 }
 
 
