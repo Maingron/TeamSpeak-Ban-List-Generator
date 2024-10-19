@@ -24,16 +24,21 @@ function replaceLettersInWord(inputWord) {
 	return ".*" + processedWord + ".*";
 }
 
-for(let word of words) {
-	// arrayOfRenderedStrings.push(replaceLettersInWord(word[0]));
-	arrayOfRenderedYatqa.push(handleOneWordEntry(word));
-}
-
 function handleOneWordEntry(inputWord) {
 	let word = inputWord[0];
 	let reason = inputWord[1];
 
 	return [replaceLettersInWord(word), reason];
+}
+
+function handleWordCollection(inputCollection) {
+	let processedWordCollection = [];
+
+	for(let oneWordEntry of inputCollection) {
+		processedWordCollection.push(handleOneWordEntry(oneWordEntry));
+	}
+
+	return processedWordCollection;
 }
 
 var formatConvert = {
@@ -57,5 +62,7 @@ var outputStuff = {
 function startSequentialProcess() {
 	
 }
+
+
 
 outputStuff.outputToHTML();
