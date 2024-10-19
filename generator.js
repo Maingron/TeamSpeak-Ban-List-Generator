@@ -1,5 +1,3 @@
-var arrayOfRenderedStrings = [];
-
 const letters = {
 	"a": ["a", "A", "@", "α", "ⓐ", "🅰️"],
 	"b": ["b", "B", "6", "ⓑ", "🅱️"],
@@ -78,6 +76,7 @@ const words = [
 ];
 
 
+var arrayOfRenderedStrings = [], arrayOfRenderedYatqa = [];
 
 function replaceLettersInWord(inputWord) {
 	let wordString = ".*";
@@ -100,7 +99,8 @@ function replaceLettersInWord(inputWord) {
 }
 
 for(let word of words) {
-	arrayOfRenderedStrings.push(replaceLettersInWord(word[0]));
+	// arrayOfRenderedStrings.push(replaceLettersInWord(word[0]));
+	arrayOfRenderedYatqa.push(handleOneWordEntry(word));
 }
 
 function handleOneWordEntry(inputWord) {
@@ -110,8 +110,13 @@ function handleOneWordEntry(inputWord) {
 	return [replaceLettersInWord(word), reason];
 }
 
-
-
+var formatConvert = {
+	arrayEntryToYatqa: function(input) {
+		let name = input[0];
+		let reason = input[1];
+		return "name=" + name + " duration=0 banreason=" + reason + " ";
+	}
+}
 
 var outputStuff = {
 	outputToHTML: function() {
