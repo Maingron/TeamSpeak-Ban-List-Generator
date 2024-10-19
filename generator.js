@@ -1,23 +1,27 @@
 var arrayOfRenderedStrings = [], arrayOfRenderedYatqa = [];
 
 function replaceLettersInWord(inputWord) {
-	let wordString = ".*";
-	for(let letterOfWord of inputWord.split("")) {
-		let letterLetters = letters[letterOfWord];
-		let letterCapsule = "[";
-		for(let targetLetter of letterLetters) {
-			letterCapsule += targetLetter;
-		}
-		letterCapsule += "]";
-		letterCapsule += ".?";
-		letterCapsule += ".?";
-		letterCapsule += ".?";
-		letterCapsule += ".?";
-		wordString += letterCapsule;
-	}
-	wordString += ".*";
+	let processedWord = "";
 
-	return wordString;
+	function getInnerCapsule(letter) {
+		let processedInnerCapsule = "";
+
+		for(let targetLetter of letters[letter]) {
+			processedInnerCapsule += targetLetter;
+		}
+
+		return processedInnerCapsule;
+	}
+
+	for(let letterOfWord of inputWord.split("")) {
+		if(processedWord.length > 0) {
+			processedWord += ".?.?.?.?.?";
+		}
+
+		processedWord += "[" + getInnerCapsule(letterOfWord) + "]";
+	}
+
+	return ".*" + processedWord + ".*";
 }
 
 for(let word of words) {
