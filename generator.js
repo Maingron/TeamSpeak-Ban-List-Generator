@@ -88,7 +88,11 @@ function startSequentialProcess() {
 	let result1 = handleWordCollection(words);
 	result1 = yatqaConverter.handleWordCollection(result1);
 
-	document.querySelector("#g-ybl").innerHTML = result1;
+	let result2 = handleBanCharsetCollection(charsetCollection);
+	result2 = yatqaConverter.handleWordCollection(result2);
+
+
+	document.querySelector("#g-ybl").innerHTML = result2 + result1;
 }
 
 startSequentialProcess();

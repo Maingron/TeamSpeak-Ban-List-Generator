@@ -1,6 +1,6 @@
 var letters = {
-	"a": ["a", "A", "@", "ä", "α", "ⓐ", "🅰️", "À", "Á", "Â", "Ã", "Ä", "Å"],
-	"b": ["b", "B", "6", "ⓑ", "🅱️"],
+	"a": ["a", "A", "@", "ä", "α", "ⓐ", "À", "Á", "Â", "Ã", "Ä", "Å"],
+	"b": ["b", "B", "6", "ⓑ"],
 	"c": ["c", "C", "(", "ⓒ", "©", "Ç"],
 	"d": ["d", "D", "ⓓ"],
 	"e": ["e", "E", "3", "³", "ⓔ", "€", "È", "É", "Ê", "Ë"],
@@ -51,7 +51,10 @@ const reasons = reason = {
 	adminImpersonation: "Impersonation of admin",
 	test: "TEST - This shouldn't have happened. You're free to reconnect once this mistake is fixed. Big sorry!",
 	obscene: "We don't use such words here...",
-	undefined: " "
+	undefined: " ",
+	characters: {
+		bloodType: "You can't use blood-type emojis in your nickname."
+	}
 }
 
 const words = [
