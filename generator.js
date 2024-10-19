@@ -83,13 +83,12 @@ var outputStuff = {
 }
 
 function startSequentialProcess() {
-	let bla = handleWordCollection(words);
-	bla = yatqaConverter.handleWordCollection(bla);
-	return bla;
+	letters = expandLetters.handleLetterCollection(letters);
+
+	let result1 = handleWordCollection(words);
+	result1 = yatqaConverter.handleWordCollection(result1);
+
+	document.querySelector("#g-ybl").innerHTML = result1;
 }
 
-
-letters = expandLetters.handleLetterCollection(letters);
-
-
-outputStuff.outputToHTML();
+startSequentialProcess();
