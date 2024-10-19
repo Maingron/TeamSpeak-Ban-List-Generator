@@ -1,0 +1,1 @@
+# teamspeak-ban-list
