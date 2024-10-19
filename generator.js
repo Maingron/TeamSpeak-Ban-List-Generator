@@ -41,8 +41,35 @@ function handleWordCollection(inputCollection) {
 	return processedWordCollection;
 }
 
-var formatConvert = {
+var expandLetters = {
+	handleOneLetterEntry: function(inputLetterEntry) {
+		let processedLetterCollection = [];
+	
+		for(let letter of inputLetterEntry) {
+			let letterLower = letter.toLowerCase();
+			let letterUpper = letter.toUpperCase();
+	
+			if(processedLetterCollection.indexOf(letterLower) == -1) {
+				processedLetterCollection.push(letterLower);
+			}
+	
+			if(processedLetterCollection.indexOf(letterUpper) == -1) {
+				processedLetterCollection.push(letterUpper);
+			}
+		}
+	
+		return processedLetterCollection;
+	},
+	
+	handleLetterCollection: function(inputCollection) {
+		let processedLetterCollection = {};
+		for(let letter of Object.keys(inputCollection)) {
+			processedLetterCollection[letter] = this.handleOneLetterEntry(inputCollection[letter]);
+		}
 
+		return processedLetterCollection;
+	}
+	
 }
 
 var outputStuff = {
@@ -61,6 +88,8 @@ function startSequentialProcess() {
 	return bla;
 }
 
+
+letters = expandLetters.handleLetterCollection(letters);
 
 
 outputStuff.outputToHTML();
