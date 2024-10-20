@@ -11,6 +11,18 @@ Make sure to open your browser console (CTRL + I) to monitor for errors. Queries
 
 Contributions and questions welcome.
 
+## Further steps
+Depending on your configuration, you can take further steps to harden your TeamSpeak server.
+Some examples:
+- Fail2Ban (with TeamSpeak configuration)
+- Moderators
+
 ## Special things when adding words
 - Make sure to watch the browser console for errors
 - Writing `+` results in regex +, meaning the previous character (or character group) can follow unlimited times
+
+## Screenshots
+|  |  |
+|--|--|
+|![Banner](img/banner.png)|![Logo](logo.svg)|
+![Screenshot of YaTQA](img/screenshot1.png)
