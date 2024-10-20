@@ -89,7 +89,10 @@ const reasons = reason = {
 		russianIdentical: "Your nickname can't contain characters Letters of the Russian (Cyrillic) Alphabet that look identical to the latin alphabet. Please replace all of these: АаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј with these: AaBbEeKkMmHhOoPpCcTtYyXxSsIiJj",
 		political: "Your nickname can't contain certain political characters",
 		pipes: "Your nickname can't contain Pipes (|)",
-		modifiedCurrency: "Your nickname can't contain modified currency Characters"
+		modifiedCurrency: "Your nickname can't contain modified currency Characters",
+		upsideDown: "Your nickname can't contain upside-down Characters",
+		unclassified: "Your nickname contains invalid characters",
+		circled: "Your nickname can't contain circled characters"
 	}
 }
 
