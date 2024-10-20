@@ -89,11 +89,57 @@ var expandLetters = {
 
 		return processedLetterCollection;
 	}
-	
+}
+
+var reduceLetters = {
+	// This will remove characters from letters that are already included in charsetCollection.
+	// This will reduce length of ban strings
+
+	mergeAllFromCharsetCollection: function(inputCharsetCollection) {
+		let resultingCollection = [];
+		for(let oneCharsetEntry of inputCharsetCollection) {
+			for(let oneSubEntry of oneCharsetEntry[0]) {
+				if(oneSubEntry.indexOf("[") == 0 && oneSubEntry.indexOf("]") == oneSubEntry.length - 1) {
+					oneSubEntry = oneSubEntry.split("[")[1].split("]")[0];
+					oneSubEntry = oneSubEntry.split("");
+					
+					for(let oneChar of oneSubEntry) {
+						resultingCollection.push(oneChar);
+					}
+				} else {
+					resultingCollection.push(oneSubEntry)
+				}
+			}
+		}
+		return resultingCollection;
+	},
+
+	handleLetterCollection: function(inputCollection, inputCharsetCollectionString) {
+		let processedLetterCollection = {};
+
+		for(let letter of Object.keys(inputCollection)) {
+			processedLetterCollection[letter] = this.handleOneLetterEntry(inputCollection[letter], inputCharsetCollectionString); 
+		}
+
+		return processedLetterCollection;
+	},
+
+	handleOneLetterEntry: function(inputLetterEntry, inputCharsetCollectionString) {
+		let processedLetterEntry = [];
+
+		for(let letter of inputLetterEntry) {
+			if(inputCharsetCollectionString.indexOf(letter) == -1) {
+				processedLetterEntry.push(letter);
+			}
+		}
+
+		return processedLetterEntry;
+	}
 }
 
 function startSequentialProcess() {
 	letters = expandLetters.handleLetterCollection(letters);
+	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(charsetCollection));
 
 	let result1 = handleWordCollection(words);
 	result1 = yatqaConverter.handleWordCollection(result1);

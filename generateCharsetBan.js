@@ -38,7 +38,7 @@ var charsetCollection = [
 	// [["[🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩]"], reasons.characters.undefined],
 	[["[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]"], reasons.characters.undefined],
 	[["[࿕࿖࿗࿘]"], reasons.characters.political],
-	[["Ⓜ️"], reasons.test]
+	[["[Ⓜ️]"], reasons.test]
 ];
 
 // Invalid, and thus already "banned" charsets:
