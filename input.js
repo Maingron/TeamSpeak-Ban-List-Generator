@@ -47,8 +47,6 @@ var letters = {
 	"\\": ["\\"]
 };
 
-// TODO: Add incompatible letters for TeamSpeak, YaTQA and Sinusbot, so they can be excluded in generated banlists
-
 var multiLetters = { // This is not implemented yet, just a "dummy-ish" object containing data for future use
 	"aa": ["ㅆ", "ㅃ"],
 	"ae": ["Æ", "æ"],
@@ -56,6 +54,13 @@ var multiLetters = { // This is not implemented yet, just a "dummy-ish" object c
 	"yen": ["¥", "￥"],
 	"dz": ["Ǳ", "ǲ", "ǳ"],
 	"cc": ["ㄸ"]
+}
+
+const incompatibleLetters = {
+	teamspeak: [],
+	yatqaAlways: [],
+	yatqaImport: ["¦"],
+	sinusbot: []
 }
 
 const reasons = reason = {

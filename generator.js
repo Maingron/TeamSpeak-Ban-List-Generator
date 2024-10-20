@@ -140,13 +140,30 @@ var reduceLetters = {
 function startSequentialProcess() {
 	letters = expandLetters.handleLetterCollection(letters);
 	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(charsetCollection));
-
+	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(incompatibleLetters.teamspeak));
+	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(incompatibleLetters.yatqaAlways));
+	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(incompatibleLetters.yatqaImport));
+	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(incompatibleLetters.sinusbot));
 	let result1 = handleWordCollection(words);
 	result1 = yatqaConverter.handleWordCollection(result1);
 
 	let result2 = handleBanCharsetCollection(charsetCollection);
 	result2 = yatqaConverter.handleWordCollection(result2);
 
+	for(let letter1 of incompatibleLetters.yatqaImport) {
+		result1 = result1.replaceAll(letter1, "");
+		result2 = result2.replaceAll(letter1, "");
+	}
+
+	for(let letter1 of incompatibleLetters.yatqaAlways) {
+		result1 = result1.replaceAll(letter1, "");
+		result2 = result2.replaceAll(letter1, "");
+	}
+
+	for(let letter1 of incompatibleLetters.teamspeak) {
+		result1 = result1.replaceAll(letter1, "");
+		result2 = result2.replaceAll(letter1, "");
+	}
 
 	document.querySelector("#g-ybl").innerHTML = result2 + result1;
 }
