@@ -19,6 +19,11 @@ function replaceLettersInWord(inputWord, flags = 0b1001) {
 	}
 
 	for(let letterOfWord of inputWord.split("")) {
+		if(letterOfWord == "+") {
+			processedWord += "+";
+			continue;
+		}
+
 		if(processedWord.length > 0) {
 			if(flags & 8) {
 				processedWord += ".?.?";
