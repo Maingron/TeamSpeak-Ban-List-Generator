@@ -68,18 +68,35 @@ function handleWordCollection(inputCollection) {
 
 var expandLetters = {
 	handleOneLetterEntry: function(inputLetterEntry) {
+		// Flags:
+		// 1: Expand
 		let processedLetterCollection = [];
+
+		if(typeof(inputLetterEntry[0]) == "number") {
+			flags = inputLetterEntry[0];
+		} else {
+			flags = 0b1;
+		}
+
+
 	
 		for(let letter of inputLetterEntry) {
-			let letterLower = letter.toLowerCase();
-			let letterUpper = letter.toUpperCase();
-	
-			if(processedLetterCollection.indexOf(letterLower) == -1) {
-				processedLetterCollection.push(letterLower);
+			if(typeof(letter) != "string") {
+				continue;
 			}
-	
-			if(processedLetterCollection.indexOf(letterUpper) == -1) {
-				processedLetterCollection.push(letterUpper);
+			if(flags & 1) {
+				let letterLower = letter.toLowerCase();
+				let letterUpper = letter.toUpperCase();
+		
+				if(processedLetterCollection.indexOf(letterLower) == -1) {
+					processedLetterCollection.push(letterLower);
+				}
+		
+				if(processedLetterCollection.indexOf(letterUpper) == -1) {
+					processedLetterCollection.push(letterUpper);
+				}
+			} else {
+				processedLetterCollection.push(letter);
 			}
 		}
 	
