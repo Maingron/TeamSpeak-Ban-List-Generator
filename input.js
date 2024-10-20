@@ -71,6 +71,7 @@ const reasons = reason = {
 	test: "TEST - This shouldn't have happened. You're free to reconnect once this mistake is fixed. Big sorry!",
 	obscene: "We don't use such words here...",
 	undefined: "Reason unknown",
+	defaultName: "Your nickname has to be more unique",
 	characters: {
 		bloodType: "You can't use blood-type emojis in your nickname.",
 		control: "Your nickname can't contain control-characters.",
@@ -105,12 +106,11 @@ const reasons = reason = {
 
 const words = [
 	// ["reason", "word"],
-	["test", reason.test],
 
 	// Probably spam, users should use something individual
-		["mspeakuse", reason.undefined],
-		["seakuse", reason.undefined],
-		["new", reason.undefined, 0b1],
+		["speakus", reason.defaultName],
+		["seakus", reason.defaultName],
+		["new", reason.defaultName, 0b1],
 
 
 	// Admin / Impersonation:
@@ -129,7 +129,7 @@ const words = [
 		["nig+er", reason.obscene],
 		["kill yo", reason.obscene],
 		["otherfuc", reason.obscene],
-		["asshole", reason.obscene],
+		["as+hole", reason.obscene],
 		["ickhea", reason.obscene],
 		["fuck off", reason.obscene],
 		["acab", reason.obscene, 0b0111],
@@ -144,6 +144,7 @@ const words = [
 		["arse", reason.obscene, 0b1111],
 		["hitler", reason.obscene, 0b1001],
 		["ieg hei", reason.obscene, 0b1001],
+		["ocksuc", reason.obscene],
 
 
 		// German:
@@ -154,12 +155,12 @@ const words = [
 		["arsh", reason.obscene],
 		["enisluts", reason.obscene],
 		["scheiß", reason.obscene],
-		["ecksau", reason.obscene],
-		["eckssau", reason.obscene],
+		["ecks+au", reason.obscene],
 		["ficken", reason.obscene],
 		["umslokal", reason.obscene],
 		["fotze", reason.obscene],
 		["wichs", reason.obscene],
-		["issgebur", reason.obscene]
+		["issgebur", reason.obscene],
+		["anzluts", reason.obscene]
 
 ];
