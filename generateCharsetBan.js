@@ -38,6 +38,8 @@ var charsetCollection = [
 	// [["[🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩]"], reasons.characters.undefined],
 	[["[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]"], reasons.characters.undefined],
 	[["[࿕࿖࿗࿘]"], reasons.characters.political],
+	[["[¦|]"], reasons.characters.pipes],
+	[["[＄﹩￡￠￥￦]"], reasons.characters.modifiedCurrency],
 	[["[Ⓜ️]"], reasons.test]
 ];
 

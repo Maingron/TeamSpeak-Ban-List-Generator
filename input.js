@@ -1,28 +1,28 @@
 var letters = {
-	"a": ["a", "A", "@", "ä", "α", "À", "Á", "Â", "Ã", "Ä", "Å"],
-	"b": ["b", "B", "6", "₿"],
-	"c": ["c", "C", "(", "©", "Ç", "©", "¢"],
-	"d": ["d", "D"],
-	"e": ["e", "E", "3", "³", "€", "È", "É", "Ê", "Ë", "£", "￡", "ę"],
+	"a": ["a", "A", "@", "ä", "α", "À", "Á", "Â", "Ã", "Ä", "Å", "ª", "₳"],
+	"b": ["b", "B", "6", "₿", "ß", "฿"],
+	"c": ["c", "C", "(", "©", "Ç", "©", "¢", "￠", "₡"],
+	"d": ["d", "D", "Ð"],
+	"e": ["e", "E", "3", "³", "€", "È", "É", "Ê", "Ë", "£", "￡", "ę", "ε", "₤"],
 	"f": ["f", "F"],
 	"g": ["g", "G"],
 	"h": ["h", "H", "ㅐ"],
-	"i": ["i", "I", "!", "1", "|", "Ì", "Í", "Î", "Ï", "Ĩ", "ĩ", "Ī", "ī", "Ĭ", "ĭ", "Į", "į", "İ", "ı", "ㅣ"],
+	"i": ["i", "I", "!", "1", "|", "Ì", "Í", "Î", "Ï", "Ĩ", "ĩ", "Ī", "ī", "Ĭ", "ĭ", "Į", "į", "İ", "ı", "ㅣ", "¡", "¦"],
 	"j": ["j", "J", "Į", "į", "Ĵ", "ĵ"],
 	"k": ["k", "K", "Ķ", "ķ", "ĸ"],
 	"l": ["l", "L", "i", "I", "!", "1", "|", "Ì", "Í", "Î", "Ï", "Ĩ", "ĩ", "Ī", "ī", "Ĭ", "ĭ", "Į", "į", "İ", "ı", "Ĺ", "Ļ", "Ł", "ł", "ĺ", "ļ"],
-	"m": ["m", "M", "ՠ", "ա", "൩", "൱", "ก", "ด", "ต", "ถ", "ท"],
-	"n": ["n", "N", "Ń", "ń", "Ņ", "ņ", "Ň", "ň", "ŉ", "Ŋ", "h", "ŋ", "ղ", "ո", "ח", "൨", "ภ"],
-	"o": ["o", "O", "ö", "0", "°", "Ō", "ō", "Ŏ", "ŏ", "Ő", "ő", "θ", "օ", "ഠ", "൦", "ㅇ"],
+	"m": ["m", "M", "ՠ", "ա", "൩", "൱", "ก", "ด", "ต", "ถ", "ท", "₥", "₼"],
+	"n": ["n", "N", "Ń", "ń", "Ņ", "ņ", "Ň", "ň", "ŉ", "Ŋ", "h", "ŋ", "ղ", "ո", "ח", "൨", "ภ", "∩", "₦"],
+	"o": ["o", "O", "ö", "0", "°", "Ō", "ō", "Ŏ", "ŏ", "Ő", "ő", "θ", "օ", "ഠ", "൦", "ㅇ", "σ"],
 	"p": ["p", "P", "₱"],
 	"q": ["q", "Q", "θ"],
-	"r": ["r", "R", "®", "Ŕ", "ŕ", "Ŗ", "ŗ", "Ř", "ř","ʳ", "®"],
-	"s": ["s", "S", "$", "§","Š", "š", "Ś", "ś"],
-	"t": ["t", "T", "+", "±"],
+	"r": ["r", "R", "®", "Ŕ", "ŕ", "Ŗ", "ŗ", "Ř", "ř","ʳ", "®", "Γ", "₹"],
+	"s": ["s", "S", "$", "§","Š", "š", "Ś", "ś", "ಽ", "ട", "﹩", "＄", "₷"],
+	"t": ["t", "T", "+", "±", "τ", "₸"],
 	"u": ["u", "U", "ü", "µ", "ն", "մ", "น", "บ", "ป"],
 	"v": ["v", "V"],
-	"w": ["w", "W", "ա", "ผ", "ฝ", "พ", "ฟ"],
-	"x": ["x", "X", ],
+	"w": ["w", "W", "ա", "ผ", "ฝ", "พ", "ฟ", "￦", "₩"],
+	"x": ["x", "X", "×"],
 	"y": ["y", "Y", "Ÿ", "¥", "￥"],
 	"z": ["z", "Z", "ž", "Ź"],
 	"ß": ["ß", "ẞ", "s", "S"],
@@ -40,15 +40,18 @@ var letters = {
 	"9": ["9", "g"],
 	"0": ["0", "O", "o", "°", "θ"],
 	" ": [" ", ".", ",", "-", "_"],
-	"-": ["-", "ㅡ"],
+	"-": ["-", "ㅡ", "—"],
 	"?": ["?", "¿"],
 	"!": ["!", "|"],
 	"/": ["/"],
 	"\\": ["\\"]
 };
 
+// TODO: Add incompatible letters for TeamSpeak, YaTQA and Sinusbot, so they can be excluded in generated banlists
+
 var multiLetters = { // This is not implemented yet, just a "dummy-ish" object containing data for future use
 	"aa": ["ㅆ", "ㅃ"],
+	"ae": ["Æ", "æ"],
 	"tm": ["™"],
 	"yen": ["¥", "￥"],
 	"dz": ["Ǳ", "ǲ", "ǳ"],
@@ -84,7 +87,9 @@ const reasons = reason = {
 		enclosedAlphanumerics: "Your nickname can't contain Enclosed Alphanumerics (Letters in circles)",
 		enclosedAlphanumerics2: "Your nickname can't contain Enclosed Alphanumerics (Letters in brackets)",
 		russianIdentical: "Your nickname can't contain characters Letters of the Russian (Cyrillic) Alphabet that look identical to the latin alphabet. Please replace all of these: АаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј with these: AaBbEeKkMmHhOoPpCcTtYyXxSsIiJj",
-		political: "Your nickname can't contain certain political characters"
+		political: "Your nickname can't contain certain political characters",
+		pipes: "Your nickname can't contain Pipes (|)",
+		modifiedCurrency: "Your nickname can't contain modified currency Characters"
 	}
 }
 
