@@ -97,6 +97,8 @@ const words = [
 		["nazi", reason.obscene],
 		["fuck", reason.obscene],
 		["penis", reason.obscene],
+		["dick", reason.obscene, 0b1],
+		["big dick", reason.obscene],
 		["bitch", reason.obscene],
 		["nigger", reason.obscene],
 		["niger", reason.obscene],
