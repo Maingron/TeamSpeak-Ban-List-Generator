@@ -60,7 +60,7 @@ var multiLetters = { // This is not implemented yet, just a "dummy-ish" object c
 const incompatibleLetters = {
 	teamspeak: [],
 	yatqaAlways: [],
-	yatqaImport: ["¦"],
+	yatqaImport: ["¦", "|", "𐐨", "𐐀"],
 	sinusbot: []
 }
 
