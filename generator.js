@@ -169,7 +169,7 @@ function isValidQueryLength(fullQuery, type) {
 				console.warn("Entry removed due to entire query being too long (" + textEncoder.encode(fullQuery).length + ")", fullQuery);
 				return false
 			}
-			if(textEncoder.encode(fullQuery.split("name=")[1].split(" duration=")[0]).length > 252) {
+			if(textEncoder.encode(fullQuery.split("name=")[1].split(" duration=")[0]).length > 255) {
 				console.warn("Entry removed due to parameter 'name=' being too long (" + textEncoder.encode(fullQuery.split("name=")[1].split(" duration=")[0]).length + ")", fullQuery);
 				return false;
 			}

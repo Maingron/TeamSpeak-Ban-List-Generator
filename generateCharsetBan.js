@@ -2,14 +2,20 @@ var charsetCollection = [
 	// [["🅰️", "🅱️", "🅾️", "🆎"], reasons.characters.bloodType],
 	// [["[🅰️🅱️🅾️🆎]"], reasons.characters.bloodType],
 	[["\\s\\s\\s"], reasons.characters.consSpace],
-	[["[ƒƑ]"], reasons.characters.fakeF],
+	[["[ԁ]"], reasons.characters.fakeD],
+	[["[Ε]"], reasons.characters.fakeE],
+	[["[ƒƑ⨎]"], reasons.characters.fakeF],
 	[["[ց]"], reasons.characters.fakeG],
+	[["[ӏ]"], reasons.characters.fakeI],
 	[["[ĸ]"], reasons.characters.fakeK],
 	[["[ľŀ]"], reasons.characters.fakeL],
-	[["[Μ൱൩]"], reasons.characters.fakeM],
-	[["[൨]"], reasons.characters.fakeN],
-	[["[օՕഠ൦]"], reasons.characters.fakeO],
+	[["[Μ൱൩ՠ]"], reasons.characters.fakeM],
+	[["[൨ŉո]"], reasons.characters.fakeN],
+	[["[օՕഠ൦ο]"], reasons.characters.fakeO],
 	[["[ಽട]"], reasons.characters.fakeS],
+	[["[սυ]"], reasons.characters.fakeU],
+	[["[νѵ]"], reasons.characters.fakeV],
+	[["[ա]"], reasons.characters.fakeW],
 	[["[–—]"], reasons.characters.fakeDash],
 	[["[ƦɌѓЃґҐӷӶԇԆ]"], reasons.characters.fakeR],
 	[["[️️️]"], reasons.characters.tsbug1],
@@ -20,6 +26,7 @@ var charsetCollection = [
 	[["[ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]"], reasons.characters.enclosedAlphanumerics],
 	// [["[𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧]"], reasons.characters.undefined],
 	[["[ʎʍʌʇɹɯʅʞɾᴉɥƃⅎǝɔɐ]"], reasons.characters.upsideDown],
+	[["[¡]"], reasons.characters.upsideDownPunctuation],
 	[["[ᴀᴅᴍɪɴ]"], reasons.characters.unclassified],
 	[["[АаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј]"], reasons.characters.russianIdentical],
 	[["[ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁⱽᵂᵅᵝᵞᵟᵋᶿᶥᶲᵠᵡ]"], reasons.characters.superscript],
@@ -44,9 +51,11 @@ var charsetCollection = [
 	[["[࿕࿖࿗࿘卍卐]"], reasons.characters.political],
 	[["[¦|]"], reasons.characters.pipes],
 	[["[＄﹩￡￠￥￦]"], reasons.characters.modifiedCurrency],
-	[["[₷]"], reasons.characters.outdatedCurrency],
-	[["[ʼ]"], reasons.characters.unclassified],
-	[["[ÁáÉéÍíÓóŐőÚúŰű]"], reasons.characters.hungarian]
+	[["[₷₠₣₧₯₰₳₶₻]"], reasons.characters.outdatedCurrency],
+	[["[₹₤₡₥₦₨₩₪₫₭₮₱₲₴₵₸₺₼₽₾⃀£฿¢]"], reasons.characters.currency], // $€
+	[["[₿⟠]"], reasons.characters.cryptoCurrency],
+	[["[ʼ]"], reasons.characters.unclassified]
+	// [["[ÁáÉéÍíÓóŐőÚúŰű]"], reasons.characters.hungarian],
 ];
 
 // Invalid, and thus already "banned" charsets:
