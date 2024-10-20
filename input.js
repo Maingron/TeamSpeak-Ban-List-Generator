@@ -94,10 +94,32 @@ const words = [
 		["bitch", reason.obscene],
 		["nigger", reason.obscene],
 		["niger", reason.obscene],
+		["kill yo", reason.obscene],
+		["otherfuc", reason.obscene],
+		["asshole", reason.obscene],
+		["ickhea", reason.obscene],
+		["fuck off", reason.obscene],
+		["acab", reason.obscene],
+		["horny", reason.obscene],
+		["shithead", reason.obscene],
+		["pornog", reason.obscene],
+		["porny", reason.obscene],
+
 
 		// German:
 		["hurensohn", reason.obscene],
 		["huhrensohn", reason.obscene],
 		["nutte", reason.obscene],
-		["arsch", reason.obscene]
+		["arsc", reason.obscene],
+		["arsh", reason.obscene],
+		["enisluts", reason.obscene],
+		["scheiß", reason.obscene],
+		["ecksau", reason.obscene],
+		["eckssau", reason.obscene],
+		["ficken", reason.obscene],
+		["umslokal", reason.obscene],
+		["fotze", reason.obscene],
+		["wichs", reason.obscene],
+		["issgebur", reason.obscene],
+
 ];
