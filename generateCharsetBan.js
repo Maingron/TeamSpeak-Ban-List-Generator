@@ -22,6 +22,9 @@ var charsetCollection = [
 	[["[ʎʍʌʇɹɯʅʞɾᴉɥƃⅎǝɔɐ]"], reasons.characters.upsideDown],
 	[["[ᴀᴅᴍɪɴ]"], reasons.characters.unclassified],
 	[["[АаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј]"], reasons.characters.russianIdentical],
+	[["[ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁⱽᵂᵅᵝᵞᵟᵋᶿᶥᶲᵠᵡ]"], reasons.characters.superscript],
+	[["[ª]"], reasons.characters.superscript],
+	[["[ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ₊₋₌₍₎ᵦᵧᵨᵩ]"], reasons.characters.subscript],
 	// [["[𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻]"], reasons.characters.undefined],
 	// [["[𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓]"], reasons.characters.undefined],
 	// [["[𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯]"], reasons.characters.undefined],
@@ -40,7 +43,10 @@ var charsetCollection = [
 	[["[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]"], reasons.characters.circled],
 	[["[࿕࿖࿗࿘卍卐]"], reasons.characters.political],
 	[["[¦|]"], reasons.characters.pipes],
-	[["[＄﹩￡￠￥￦]"], reasons.characters.modifiedCurrency]
+	[["[＄﹩￡￠￥￦]"], reasons.characters.modifiedCurrency],
+	[["[₷]"], reasons.characters.outdatedCurrency],
+	[["[ʼ]"], reasons.characters.unclassified],
+	[["[ÁáÉéÍíÓóŐőÚúŰű]"], reasons.characters.hungarian]
 ];
 
 // Invalid, and thus already "banned" charsets:
