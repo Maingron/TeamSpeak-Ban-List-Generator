@@ -42,7 +42,8 @@ var letters = {
 	" ": [" ", ".", ",", "-", "_"],
 	"-": ["-"],
 	"?": ["?", "¿"],
-	"!": ["!", "|"]
+	"!": ["!", "|"],
+	"/": ["/"]
 };
 
 const reasons = reason = {
@@ -51,7 +52,7 @@ const reasons = reason = {
 	adminImpersonation: "Impersonation of admin",
 	test: "TEST - This shouldn't have happened. You're free to reconnect once this mistake is fixed. Big sorry!",
 	obscene: "We don't use such words here...",
-	undefined: " ",
+	undefined: "Reason unknown",
 	characters: {
 		bloodType: "You can't use blood-type emojis in your nickname.",
 		control: "Your nickname can't contain control-characters.",
@@ -65,7 +66,7 @@ const reasons = reason = {
 		fakeR: "You can't have weird versions of 'R' in your nickname.",
 		fakeDash: "You can't have weird versions of '-' in your nickname.",
 		tsbug1: "Your nickname contains weird and broken characters due to Teamspeak string translation. Please only use normal letters to avoid this.",
-		undefined: " ",
+		undefined: "Reason unknown",
 		regionalIndicatorLetters: "Your nickname can't contain Regional Indicator Letters",
 		middleFinger: "You can't show your middlefinger like that...",
 		enclosedAlphanumerics: "Your nickname can't contain Enclosed Alphanumerics (Letters in circles)",
@@ -79,6 +80,8 @@ const words = [
 
 	// Probably spam, users should use something individual
 		["mspeakuse", reason.undefined],
+		["seakuse", reason.undefined],
+		["new", reason.undefined, 0b1],
 
 
 	// Admin / Impersonation:
@@ -99,7 +102,7 @@ const words = [
 		["asshole", reason.obscene],
 		["ickhea", reason.obscene],
 		["fuck off", reason.obscene],
-		["acab", reason.obscene],
+		["acab", reason.obscene, 0b1],
 		["horny", reason.obscene],
 		["shithead", reason.obscene],
 		["pornog", reason.obscene],

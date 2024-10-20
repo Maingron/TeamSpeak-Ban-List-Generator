@@ -1,6 +1,6 @@
 var arrayOfRenderedStrings = [], arrayOfRenderedYatqa = [];
 
-function replaceLettersInWord(inputWord) {
+function replaceLettersInWord(inputWord, flags = 0b0) {
 	let processedWord = "";
 
 	function getInnerCapsule(letter) {
@@ -21,14 +21,23 @@ function replaceLettersInWord(inputWord) {
 		processedWord += "[" + getInnerCapsule(letterOfWord) + "]";
 	}
 
-	return ".*" + processedWord + ".*";
+	// flags:
+	// 1: don't append and prepend .*
+
+	if(flags & 1) {
+		return processedWord;
+	} else {
+		return ".*" + processedWord + ".*";
+	}
+
 }
 
 function handleOneWordEntry(inputWord) {
 	let word = inputWord[0];
 	let reason = inputWord[1];
+	let flags = inputWord[2];
 
-	return [replaceLettersInWord(word), reason];
+	return [replaceLettersInWord(word, flags), reason];
 }
 
 function handleWordCollection(inputCollection) {
