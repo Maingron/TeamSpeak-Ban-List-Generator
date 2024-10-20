@@ -92,16 +92,6 @@ var expandLetters = {
 	
 }
 
-var outputStuff = {
-	outputToHTML: function() {
-		let outputString = "";
-		for(let myString of arrayOfRenderedStrings) {
-			outputString += myString + "<br>";
-		}
-		document.write(outputString);
-	}
-}
-
 function startSequentialProcess() {
 	letters = expandLetters.handleLetterCollection(letters);
 
