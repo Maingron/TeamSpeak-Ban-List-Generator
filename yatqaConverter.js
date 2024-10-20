@@ -2,7 +2,11 @@ var yatqaConverter = {
 	handleOneWordEntry: function(inputEntry) {
 		let result = "name=" + inputEntry[0] + " duration=0 banreason=" + this.convertReason(inputEntry[1]);
 		result += " \r\n";
-		return result;
+		if(isValidQueryLength(result, "yatqaimport")) {
+			return result;
+		} else {
+			return "";
+		}
 	},
 
 	convertReason: function(inputReason) {

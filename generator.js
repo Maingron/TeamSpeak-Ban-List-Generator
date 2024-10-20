@@ -137,6 +137,26 @@ var reduceLetters = {
 	}
 }
 
+function isValidQueryLength(fullQuery, type) {
+	const textEncoder = new TextEncoder();
+
+	switch(type) {
+		default:
+		case "yatqaimport":
+			if(textEncoder.encode(fullQuery).length > 2040) {
+				console.warn("Entry removed due to entire query being too long (" + textEncoder.encode(fullQuery).length + ")", fullQuery);
+				return false
+			}
+			if(textEncoder.encode(fullQuery.split("name=")[1].split(" duration=")[0]).length > 252) {
+				console.warn("Entry removed due to parameter 'name=' being too long (" + textEncoder.encode(fullQuery.split("name=")[1].split(" duration=")[0]).length + ")", fullQuery);
+				return false;
+			}
+			break;
+	}
+
+	return true
+}
+
 function startSequentialProcess() {
 	letters = expandLetters.handleLetterCollection(letters);
 	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(charsetCollection));
