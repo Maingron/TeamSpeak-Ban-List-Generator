@@ -8,6 +8,7 @@ You can edit the rules in the JavaScript files. You're probably looking for `con
 
 Make sure to open your browser console (CTRL + I) to monitor for errors. Queries get too long for TeamSpeak basically immediately - This is also the reason for banning some charsets within charsetCollection, so we don't have to check for all of these "fake" letters later.
 
+.ybl files are meant to be "YaTQA Import List"
 
 Contributions and questions welcome.
 
@@ -20,6 +21,15 @@ Some examples:
 ## Special things when adding words
 - Make sure to watch the browser console for errors
 - Writing `+` results in regex +, meaning the previous character (or character group) can follow unlimited times
+
+## Example lists
+You can find example lists in the example lists-directory. Note: If you use the generation tool, you'll automatically obtain these with your result.
+
+Here's a brief description for each one:
+- [control and broken characters.ybl](example%20lists/control%20and%20broken%20characters.ybl) - TeamSpeak translates some characters incorrectly, also control characters aren't really a thing you want. It's recommended to use this list.
+- [fake characters.ybl](example%20lists/fake%20characters.ybl) - Bans characters that look like the actual characters but are actually different
+- [foreign charsets.ybl](example%20lists/foreign%20charsets.ybl) - Bans characters that represent a letter, but are clearly distinguishable. For example subscript, upside down 
+
 
 ## Screenshots
 |  |  |

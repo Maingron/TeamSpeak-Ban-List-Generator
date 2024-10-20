@@ -1,0 +1,16 @@
+name=.*[🇦🇧🇨🇩🇪🇫🇬🇭🇮🇯🇰🇱🇲🇳🇴🇵🇶🇷🇸🇹🇺🇻🇼🇽🇾🇿].* duration=0 banreason=Your\snickname\scan't\scontain\sRegional\sIndicator\sLetters 
+name=.*[⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵].* duration=0 banreason=Your\snickname\scan't\scontain\sEnclosed\sAlphanumerics\s(Letters\sin\sbrackets) 
+name=.*[ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ].* duration=0 banreason=Your\snickname\scan't\scontain\sEnclosed\sAlphanumerics\s(Letters\sin\scircles) 
+name=.*[ʎʍʌʇɹɯʅʞɾᴉɥƃⅎǝɔɐ].* duration=0 banreason=Your\snickname\scan't\scontain\supside-down\scharacters 
+name=.*[ᴀᴁᴂᴃᴄᴅᴆᴇᴈᴉᴊᴋᴌᴍᴎᴏᴐᴑᴒᴓᴔᴕᴖᴗᴘᴙᴚᴛᴜᴝᴞᴟᴠᴡᴢᴣɪɴ].* duration=0 banreason=Your\snickname\scan't\scontain\scharacters\sfrom\sthe\sLatin\sSmall\scharset 
+name=.*[АаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј].* duration=0 banreason=Your\snickname\scan't\scontain\scharacters\sLetters\sof\sthe\sRussian\s(Cyrillic)\sAlphabet\sthat\slook\sidentical\sto\sthe\slatin\salphabet.\sPlease\sreplace\sall\sof\sthese:\sАаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј\swith\sthese:\sAaBbEeKkMmHhOoPpCcTtYyXxSsIiJj 
+name=.*[᙮ᚁ].* duration=0 banreason=Your\snickname\scan't\scontain\ssubscript\scharacters 
+name=.*[ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁⱽᵂᵅᵝᵞᵟᵋᶿᶥᶲᵠᵡᐢᐡᐤᐜᐪᑦᒃᒄᒢᒻᒼᔆᕁᔿᕽᘁᙆᙇᙚᛌ].* duration=0 banreason=Your\snickname\scan't\scontain\ssuperscript\scharacters 
+name=.*[ª].* duration=0 banreason=Your\snickname\scan't\scontain\ssuperscript\scharacters 
+name=.*[ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ₊₋₌₍₎ᵦᵧᵨᵩ].* duration=0 banreason=Your\snickname\scan't\scontain\ssubscript\scharacters 
+name=.*[ᚷᛒᛔᛕᛖᛗᛶᛱᛰᛴᛲᚱᚺᚻᛁᛉᚹ].* duration=0 banreason=Your\snickname\scan't\scontain\srunes 
+name=.*[ᜠᜡᜤᜥᜦᜧᜩᜫᜬᜭᜮᜯᜰᜱ].* duration=0 banreason=Your\snickname\scan't\scontain\sHanunoo\scharacters 
+name=.*[ᥑᥒᥔᥕᥙᥛᥝᥟᥠᥢᥣᥥᥦᥧᥨᥩᥬᥫᥭᥰᥱᥲᥴ].* duration=0 banreason=Your\snickname\scan't\scontain\sTai\sLe\sletters 
+name=.*[ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ].* duration=0 banreason=Your\snickname\scontains\sinvalid\scharacters 
+name=.*[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ].* duration=0 banreason=Your\snickname\scan't\scontain\scircled\scharacters 
+name=.*[¡].* duration=0 banreason=Your\snickname\scan't\scontain\supside-down\spunctuation\scharacters 

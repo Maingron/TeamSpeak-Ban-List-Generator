@@ -1,0 +1,2 @@
+name=.*[️️️].* duration=0 banreason=Your\snickname\scontains\sweird\sand\sbroken\scharacters\sdue\sto\sTeamspeak\sstring\stranslation.\sPlease\sonly\suse\snormal\sletters\sto\savoid\sthis. 
+name=.*[␀␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟␠␡].* duration=0 banreason=Your\snickname\scan't\scontain\scontrol-characters. 

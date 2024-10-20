@@ -1,0 +1,21 @@
+name=.*\s\s\s.* duration=0 banreason=You\scan't\shave\s3\sor\smore\sconsecutive\sspaces\sin\syour\snickname. 
+name=.*[ᗅᗋ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'A'\sin\syour\snickname. 
+name=.*[ᗷᗽьЬ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'B'\sin\syour\snickname. 
+name=.*[ԁᗞᗤᗪԀ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'D'\sin\syour\snickname. 
+name=.*[Ε].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'E'\sin\syour\snickname. 
+name=.*[ƒƑ⨎].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'F'\sin\syour\snickname. 
+name=.*[ց].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'G'\sin\syour\snickname. 
+name=.*[ӏ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'I'\sin\syour\snickname. 
+name=.*[ĸ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'K'\sin\syour\snickname. 
+name=.*[ľŀı].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'L'\sin\syour\snickname. 
+name=.*[Μ൱൩ՠᗰ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'M'\sin\syour\snickname. 
+name=.*[൨ŉո].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'N'\sin\syour\snickname. 
+name=.*[օՕഠ൦ο᥆ᱛᴏᴑ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'O'\sin\syour\snickname. 
+name=.*[ᖇ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'R'\sin\syour\snickname. 
+name=.*[ಽട].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'S'\sin\syour\snickname. 
+name=.*[սυ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'U'\sin\syour\snickname. 
+name=.*[νѵ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'V'\sin\syour\snickname. 
+name=.*[աᗯ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'W'\sin\syour\snickname. 
+name=.*[᙭].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'X'\sin\syour\snickname. 
+name=.*[–— ᜭ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'-'\sin\syour\snickname. 
+name=.*[ƦɌѓЃґҐӷӶԇԆ].* duration=0 banreason=You\scan't\shave\sweird\sversions\sof\s'R'\sin\syour\snickname. 
