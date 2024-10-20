@@ -43,7 +43,8 @@ var letters = {
 	"-": ["-", "ㅡ"],
 	"?": ["?", "¿"],
 	"!": ["!", "|"],
-	"/": ["/"]
+	"/": ["/"],
+	"\\": ["\\"]
 };
 
 var multiLetters = { // This is not implemented yet, just a "dummy-ish" object containing data for future use
@@ -82,7 +83,8 @@ const reasons = reason = {
 		middleFinger: "You can't show your middlefinger like that...",
 		enclosedAlphanumerics: "Your nickname can't contain Enclosed Alphanumerics (Letters in circles)",
 		enclosedAlphanumerics2: "Your nickname can't contain Enclosed Alphanumerics (Letters in brackets)",
-		russianIdentical: "Your nickname can't contain characters Letters of the Russian (Cyrillic) Alphabet that look identical to the latin alphabet. Please replace all of these: АаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј with these: AaBbEeKkMmHhOoPpCcTtYyXxSsIiJj"
+		russianIdentical: "Your nickname can't contain characters Letters of the Russian (Cyrillic) Alphabet that look identical to the latin alphabet. Please replace all of these: АаВвЕеКкМмНнОоРрСсТтУуХхЅѕІіЈј with these: AaBbEeKkMmHhOoPpCcTtYyXxSsIiJj",
+		political: "Your nickname can't contain certain political characters"
 	}
 }
 
@@ -106,7 +108,7 @@ const words = [
 		["nazi", reason.obscene],
 		["fuck", reason.obscene],
 		["penis", reason.obscene],
-		["dick", reason.obscene, 0b1],
+		["dick", reason.obscene, 0b0],
 		["big dick", reason.obscene],
 		["bitch", reason.obscene],
 		["nigger", reason.obscene],
@@ -116,11 +118,18 @@ const words = [
 		["asshole", reason.obscene],
 		["ickhea", reason.obscene],
 		["fuck off", reason.obscene],
-		["acab", reason.obscene, 0b1],
+		["acab", reason.obscene, 0b0111],
 		["horny", reason.obscene],
 		["shithead", reason.obscene],
+		["porn", reason.obscene, 0b1111],
 		["pornog", reason.obscene],
 		["porny", reason.obscene],
+		["rape", reason.obscene, 0b0101],
+		["rapi", reason.obscene, 0b0101],
+		["slut", reason.obscene, 0b1101],
+		["arse", reason.obscene, 0b1111],
+		["hitler", reason.obscene, 0b1001],
+		["ieg hei", reason.obscene, 0b1001],
 
 
 		// German:
@@ -137,6 +146,6 @@ const words = [
 		["umslokal", reason.obscene],
 		["fotze", reason.obscene],
 		["wichs", reason.obscene],
-		["issgebur", reason.obscene],
+		["issgebur", reason.obscene]
 
 ];
