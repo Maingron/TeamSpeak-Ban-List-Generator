@@ -1,6 +1,11 @@
 var arrayOfRenderedStrings = [], arrayOfRenderedYatqa = [];
 
-function replaceLettersInWord(inputWord, flags = 0b0) {
+function replaceLettersInWord(inputWord, flags = 0b1001) {
+	// flags:
+	// 1: append and prepend .*
+	// 2: must be followed by space character
+	// 4: must be preceded by space character
+	// 8: match random characters between letters
 	let processedWord = "";
 
 	function getInnerCapsule(letter) {
@@ -15,21 +20,27 @@ function replaceLettersInWord(inputWord, flags = 0b0) {
 
 	for(let letterOfWord of inputWord.split("")) {
 		if(processedWord.length > 0) {
-			processedWord += ".?.?";
+			if(flags & 8) {
+				processedWord += ".?.?";
+			}
 		}
 
 		processedWord += "[" + getInnerCapsule(letterOfWord) + "]";
 	}
 
-	// flags:
-	// 1: don't append and prepend .*
-
-	if(flags & 1) {
-		return processedWord;
-	} else {
-		return ".*" + processedWord + ".*";
+	if(flags & 4) {
+		processedWord = "\\s" + processedWord;
 	}
 
+	if(flags & 2) {
+		processedWord = processedWord + "\\s";
+	}
+
+	if(flags & 1) {
+		processedWord = ".*" + processedWord + ".*";
+	}
+
+	return processedWord;
 }
 
 function handleOneWordEntry(inputWord) {
