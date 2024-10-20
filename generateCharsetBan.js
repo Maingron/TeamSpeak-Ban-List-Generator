@@ -6,7 +6,8 @@ var charsetCollection = [
 	[["[ց]"], reasons.characters.fakeG],
 	[["[ĸ]"], reasons.characters.fakeK],
 	[["[ľŀ]"], reasons.characters.fakeL],
-	[["[Μ]"], reasons.characters.fakeM],
+	[["[Μ൱൩]"], reasons.characters.fakeM],
+	[["[൨]"], reasons.characters.fakeN],
 	[["[օՕഠ൦]"], reasons.characters.fakeO],
 	[["[ಽട]"], reasons.characters.fakeS],
 	[["[–—]"], reasons.characters.fakeDash],
@@ -37,10 +38,9 @@ var charsetCollection = [
 	// [["[🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉]"], reasons.characters.undefined],
 	// [["[🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩]"], reasons.characters.undefined],
 	[["[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]"], reasons.characters.circled],
-	[["[࿕࿖࿗࿘]"], reasons.characters.political],
+	[["[࿕࿖࿗࿘卍卐]"], reasons.characters.political],
 	[["[¦|]"], reasons.characters.pipes],
-	[["[＄﹩￡￠￥￦]"], reasons.characters.modifiedCurrency],
-	[["[Ⓜ️]"], reasons.test]
+	[["[＄﹩￡￠￥￦]"], reasons.characters.modifiedCurrency]
 ];
 
 // Invalid, and thus already "banned" charsets:

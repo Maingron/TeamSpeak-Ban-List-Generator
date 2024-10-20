@@ -81,6 +81,7 @@ const reasons = reason = {
 		fakeK: "You can't have weird versions of 'K' in your nickname.",
 		fakeL: "You can't have weird versions of 'L' in your nickname.",
 		fakeM: "You can't have weird versions of 'M' in your nickname.",
+		fakeN: "You can't have weird versions of 'N' in your nickname.",
 		fakeO: "You can't have weird versions of 'O' in your nickname.",
 		fakeS: "You can't have weird versions of 'S' in your nickname.",
 		fakeR: "You can't have weird versions of 'R' in your nickname.",
