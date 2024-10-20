@@ -1,7 +1,7 @@
 var arrayOfRenderedStrings = [], arrayOfRenderedYatqa = [];
 
 function replaceLettersInWord(inputWord, flags = 0b1001) {
-	// flags:
+	// flags: (0 b 8 4 2 1)
 	// 1: append and prepend .*
 	// 2: must be followed by space character
 	// 4: must be preceded by space character
@@ -129,7 +129,7 @@ var reduceLetters = {
 						resultingCollection.push(oneChar);
 					}
 				} else {
-					resultingCollection.push(oneSubEntry)
+					resultingCollection.push(oneSubEntry);
 				}
 			}
 		}
