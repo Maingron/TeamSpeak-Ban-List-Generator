@@ -37,6 +37,12 @@ Here's a brief description for each one:
 |![Banner](img/banner.png)|![Logo](logo.svg)|
 ![Screenshot of YaTQA](img/screenshot1.png)
 
+## Coverage
+Some project coverage:
+- [Ko-Fi Release Post](https://ko-fi.com/post/TeamSpeak-Ban-List-Generation-Tool-L3L2150LJK)
+- [Patreon Release Post](https://www.patreon.com/posts/teamspeak-ban-114384632)
+- [Bluesky Release Post](https://bsky.app/profile/maingron.bsky.social/post/3l6xxm2vi4f2x)
+
 -----
 
 ## Teamspeak and YaTQA documentation
@@ -66,3 +72,4 @@ Errors I received in YaTQA:
 ### Useful links
 - http://yat.qa/resources/server-error-codes/
 - https://ts3index.com/blog/373-regeln-fuer-ungueltige-unerlaubte-channel-und-nicknamen/
+- https://util.unicode.org/UnicodeJsps/confusables.jsp
