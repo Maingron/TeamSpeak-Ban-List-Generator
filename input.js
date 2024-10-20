@@ -46,6 +46,14 @@ var letters = {
 	"/": ["/"]
 };
 
+var multiLetters = { // This is not implemented yet, just a "dummy-ish" object containing data for future use
+	"aa": ["ㅆ", "ㅃ"],
+	"tm": ["™"],
+	"yen": ["¥", "￥"],
+	"dz": ["Ǳ", "ǲ", "ǳ"],
+	"cc": ["ㄸ"]
+}
+
 const reasons = reason = {
 	spam: "Spam",
 	impersonation: "Impersonation",
