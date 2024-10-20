@@ -15,7 +15,7 @@ function replaceLettersInWord(inputWord) {
 
 	for(let letterOfWord of inputWord.split("")) {
 		if(processedWord.length > 0) {
-			processedWord += ".?.?.?.?.?";
+			processedWord += ".?.?";
 		}
 
 		processedWord += "[" + getInnerCapsule(letterOfWord) + "]";

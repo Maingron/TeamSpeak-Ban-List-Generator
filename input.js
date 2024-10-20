@@ -17,7 +17,7 @@ var letters = {
 	"p": ["p", "P", "Ⓟ"],
 	"q": ["q", "Q", "Ⓠ", "θ"],
 	"r": ["r", "R", "Ⓡ", "®", "Ŕ", "ŕ", "Ŗ", "ŗ", "Ř", "ř", "Ʀ", "Ɍ", "ʳ", "Ѓ", "ґ", "Ґ", "Ӷ", "Ԇ", "ԇ"],
-	"s": ["s", "S", "$", "§", "Ⓢ", "Š", "š", "ಽ", "ട"],
+	"s": ["s", "S", "$", "§", "Ⓢ", "Š", "š"],
 	"t": ["t", "T", "Ⓣ"],
 	"u": ["u", "U", "ü", "Ⓤ", "µ", "ն", "մ", "น", "บ", "ป"],
 	"v": ["v", "V", "Ⓥ"],
@@ -53,7 +53,14 @@ const reasons = reason = {
 	obscene: "We don't use such words here...",
 	undefined: " ",
 	characters: {
-		bloodType: "You can't use blood-type emojis in your nickname."
+		bloodType: "You can't use blood-type emojis in your nickname.",
+		control: "Your nickname can't contain control-characters.",
+		mathDoubleStruckUpper: "You can't have Mathematical Double-Struck Letters in your nickname.",
+		mathDoubleStruckLower: "You can't have Mathematical Double-Struck Letters in your nickname.",
+		consSpace: "You can't have 3 or more consecutive spaces in your nickname.",
+		fakeS: "You can't have weird versions of 'S' in your nickname.",
+		tsbug1: "Your nickname contains weird and broken characters due to Teamspeak string translation. Please only use normal letters to avoid this.",
+		undefined: " "
 	}
 }
 
