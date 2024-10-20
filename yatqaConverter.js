@@ -1,6 +1,8 @@
 var yatqaConverter = {
 	handleOneWordEntry: function(inputEntry) {
-		return "name=" + inputEntry[0] + " duration=0 banreason=" + this.convertReason(inputEntry[1]) + " \r\n";
+		let result = "name=" + inputEntry[0] + " duration=0 banreason=" + this.convertReason(inputEntry[1]);
+		result += " \r\n";
+		return result;
 	},
 
 	convertReason: function(inputReason) {
