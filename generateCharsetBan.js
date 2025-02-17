@@ -87,5 +87,7 @@ function handleBanCharsetCollection(inputCollection) {
 		processedCharsetCollection.push(...generateBanCharsetOne(collectionEntry));
 	}
 
+	allBanEntries.push(...processedCharsetCollection);
+
 	return processedCharsetCollection;
 }

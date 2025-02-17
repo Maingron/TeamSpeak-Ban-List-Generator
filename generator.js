@@ -63,6 +63,8 @@ function handleWordCollection(inputCollection) {
 		processedWordCollection.push(handleOneWordEntry(oneWordEntry));
 	}
 
+	allBanEntries.push(...processedWordCollection);
+
 	return processedWordCollection;
 }
 
@@ -187,9 +189,9 @@ function startSequentialProcess() {
 	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(incompatibleLetters.yatqaImport));
 	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(incompatibleLetters.sinusbot));
 	let result1 = handleWordCollection(words);
-	result1 = yatqaConverter.handleWordCollection(result1);
-
 	let result2 = handleBanCharsetCollection(charsetCollection);
+
+	result1 = yatqaConverter.handleWordCollection(result1);
 	result2 = yatqaConverter.handleWordCollection(result2);
 
 	for(let letter1 of incompatibleLetters.yatqaImport) {
@@ -208,6 +210,10 @@ function startSequentialProcess() {
 	}
 
 	document.querySelector("#g-ybl").innerHTML = result2 + result1;
+
+	for(let aa of allBanEntries) {
+		tableOutput.renderTableEntry(aa[0], aa[1]);
+	}
 }
 
 startSequentialProcess();
