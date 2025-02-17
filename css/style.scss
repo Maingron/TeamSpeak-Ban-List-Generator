@@ -26,6 +26,18 @@ body {
 		background-size: contain;
 		background-position: top right;
 	}
+
+	.section-tester {
+		input {
+			display: block;
+			margin-bottom: .25em;
+		}
+
+		textarea {
+			width: 80%;
+			height: unset;
+		}
+	}
 }
 
 * {

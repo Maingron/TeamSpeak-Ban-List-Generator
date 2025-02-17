@@ -8,15 +8,24 @@
 	<body>
 		<div class="bg-image"></div>
 		<div>
-			<h2>Generated Yatqa Ban List: </h2>
-			<textarea name="g-ybl" id="g-ybl" readonly></textarea>
-			<table></table>
+			<section class="section-tester">
+				<h2>Tester </h2>
+				<input class="match-tester" type="text" placeholder="Match Tester" oninput="matchTester(this.value, allBanEntries)">
+				<textarea name="match-tester--matches" class="match-tester--matches" rows="5" readonly></textarea>
+			</section>
+
+			<section class="section-output">
+				<h2>Generated Yatqa Ban List </h2>
+				<textarea name="g-ybl" id="g-ybl" readonly></textarea>
+				<table></table>
+			</section>
 		</div>
 
 		<script>
 			let allBanEntries = [];
 		</script>
 
+		<script src="matchTester.js"></script>
 		<script src="createTableEntry.js"></script>
 		<script src="input.js"></script>
 		<script src="generateCharsetBan.js"></script>
