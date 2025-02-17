@@ -15,8 +15,8 @@ body {
 
 body {
 	.bg-image {
-		height: 20vmin;
-		width: 20vmin;
+		height: 10vmin;
+		width: 10vmin;
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -30,10 +30,11 @@ body {
 
 * {
 	object-fit: cover;
+	box-sizing: border-box;
 }
 
 #g-ybl {
-	width: 80%;
+	width: 100%;
 	margin: 0;
 	height: 80vh;
 }
