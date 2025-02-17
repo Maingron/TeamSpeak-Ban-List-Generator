@@ -41,10 +41,15 @@ var letters = {
 	"0": [0b0, "0", "O", "o", "°", "θ", "₀", "᱀"],
 	" ": [0b0, "\\s", ".", ",", "-", "_"],
 	"-": [0b0, "-", "ㅡ", "—", " "],
-	"+": [0b0, "+"],
-	"?": [0b0, "?", "¿"],
+	".": [0b0, ".", "·", "᛫"],
+	":" : [0b0, ":", "᛬", "="],
+	"=": [0b0, "="],
+	";": [0b0, ";", "᛭"],
+	",": [0b0, ","],
+	"+": [0b0, "+", "ᚁ"],
+	"?": [0b0, "?", "¿", "ß", "s", "S"],
 	"!": [0b0, "!", "|"],
-	"/": [0b0, "/"],
+	"/": [0b0, "/", "÷", "⁄"],
 	"\\": [0b0, "\\"]
 };
 
@@ -54,7 +59,9 @@ var multiLetters = { // This is not implemented yet, just a "dummy-ish" object c
 	"tm": ["™"],
 	"yen": ["¥", "￥"],
 	"dz": ["Ǳ", "ǲ", "ǳ"],
-	"cc": ["ㄸ"]
+	"cc": ["ㄸ"],
+	"ce": ["Œ", "œ"],
+	"oe": ["Œ", "œ"]
 }
 
 const incompatibleLetters = {
@@ -138,7 +145,6 @@ const words = [
 	// Probably spam, users should use something individual
 		["speakus", reason.defaultName],
 		["seakus", reason.defaultName],
-		["new", reason.defaultName, 0b1],
 
 	// Admin / Impersonation:
 		["admin", reason.adminImpersonation],
@@ -182,6 +188,86 @@ const words = [
 		["cum", reason.obscene, 0b0111],
 		["cumdum", reason.obscene, 0b0101],
 		["slave", reason.obscene, 0b0111],
+
+		// Advertisement
+		["eos.com", reason.undefined, 0b1001],
+		["http:/", reason.undefined, 0b1001],
+		["https:", reason.undefined, 0b1001],
+		["ftp:", reason.undefined, 0b1001],
+		["ftps:", reason.undefined, 0b1001],
+		["mailto:", reason.undefined, 0b1001],
+		["//www", reason.undefined, 0b1001],
+		["//ww2", reason.undefined, 0b1001],
+		["//ww3", reason.undefined, 0b1001],
+		["ww2.", reason.undefined, 0b1001],
+		["ww3.", reason.undefined, 0b1001],
+		["ts2.", reason.undefined, 0b1001],
+		["ts3.", reason.undefined, 0b1001],
+		["ts5.", reason.undefined, 0b1001],
+		["join", reason.undefined, 0b1111],
+		["hub.co", reason.undefined, 0b1001],
+		["eos.co", reason.undefined, 0b1001],
+		["ube.co", reason.undefined, 0b1001],
+		["tu.be", reason.undefined, 0b1001],
+		["ox.to", reason.undefined, 0b1001],
+
+		["url.at", reason.undefined, 0b1001],
+		["tly.co", reason.undefined, 0b1001],
+		["t.ly", reason.undefined, 0b1001],
+		["go.m", reason.undefined, 0b1001],
+		["inyurl", reason.undefined, 0b1001],
+
+		[".at/", reason.undefined, 0b1001],
+		[".be/", reason.undefined, 0b1001],
+		[".com/", reason.undefined, 0b1001],
+		[".co/", reason.undefined, 0b1001],
+		[".co.uk", reason.undefined, 0b1001],
+		[".cx/", reason.undefined, 0b1001],
+		[".de/", reason.undefined, 0b1001],
+		[".dev/", reason.undefined, 0b1001],
+		[".eu/", reason.undefined, 0b1001],
+		[".ly/", reason.undefined, 0b1001],
+		[".g+/", reason.undefined, 0b1001],
+		[".live", reason.undefined, 0b1001],
+		[".link", reason.undefined, 0b1001],
+		[".it/", reason.undefined, 0b1001],
+		[".jp/", reason.undefined, 0b1001],
+		[".rb.gy", reason.undefined, 0b1001],
+		[".ru/", reason.undefined, 0b1001],
+		[".me/", reason.undefined, 0b1001],
+		[".google", reason.undefined, 0b1001],
+		[".to/", reason.undefined, 0b1001],
+		[".tube/", reason.undefined, 0b1001],
+		[".uk/", reason.undefined, 0b1001],
+		[".tv/", reason.undefined, 0b1001],
+		[".gov/", reason.undefined, 0b1001],
+		[".xyz", reason.undefined, 0b1001],
+		[".xxx", reason.undefined, 0b1001],
+		[".zip/", reason.undefined, 0b1001],
+		[".onion", reason.undefined, 0b1001],
+		[".tor+ent", reason.undefined, 0b1001],
+		[".magnet", reason.undefined, 0b1001],
+		["?dl=", reason.undefined, 0b1001],
+		["?down", reason.undefined, 0b1001],
+		["scribe no", reason.undefined, 0b1001],
+		["scribe to", reason.undefined, 0b1001],
+		["sub to", reason.undefined, 0b1001],
+		["sub now", reason.undefined, 0b1001],
+		["oad now", reason.undefined, 0b1001],
+		["it+or+ent", reason.undefined, 0b1001],
+		["eam now", reason.undefined, 0b1001],
+		["arn now", reason.undefined, 0b1001],
+
+
+		// Politics
+		["vote tr", reason.undefined, 0b1001],
+		["vote el", reason.undefined, 0b1001],
+		["vote fo", reason.undefined, 0b1001],
+		["maga", reason.undefined, 0b1111],
+		["ca first", reason.undefined, 0b1001],
+		["ny first", reason.undefined, 0b1001],
+
+
 
 
 		// German:
