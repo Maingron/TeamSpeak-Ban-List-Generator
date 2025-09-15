@@ -138,15 +138,41 @@
 									</button>
 								</div>
 							</div>
+
+							<div class="custom-entries-manager" id="custom-entries-manager">
+								<details class="custom-entries-manager__details">
+									<summary class="custom-entries-manager__summary">
+										<span class="summary-icon">📋</span>
+										Manage Custom Entries (<span id="custom-entries-count">0</span> saved)
+									</summary>
+									<div class="custom-entries-manager__content">
+										<div class="custom-entries-manager__actions">
+											<button type="button" class="btn btn--danger btn--small" id="clear-custom-entries">
+												<span class="btn__icon">🗑️</span>
+												Clear All Custom Entries
+											</button>
+										</div>
+										<div class="custom-entries-list" id="custom-entries-list">
+											<p class="custom-entries-list__empty">No custom entries saved.</p>
+										</div>
+									</div>
+								</details>
+							</div>
 						</div>
 						
 						<div class="output-container">
 							<div class="output__header">
 								<h3 class="output__title">Generated YaTQA Ban List</h3>
-								<button class="btn btn--secondary" id="copy-btn" aria-label="Copy ban list to clipboard">
-									<span class="btn__icon">📋</span>
-									Copy to Clipboard
-								</button>
+								<div class="output__actions">
+									<button class="btn btn--secondary" id="copy-btn" aria-label="Copy ban list to clipboard">
+										<span class="btn__icon">📋</span>
+										Copy to Clipboard
+									</button>
+									<button class="btn btn--primary" id="download-btn" aria-label="Download ban list as YBL file">
+										<span class="btn__icon">💾</span>
+										Download YBL
+									</button>
+								</div>
 							</div>
 							<textarea name="g-ybl" id="g-ybl" readonly 
 								aria-label="Generated ban list for YaTQA import" 
@@ -227,9 +253,31 @@
 									<li><strong>Generate:</strong> The ban list is automatically generated when you load the page</li>
 									<li><strong>Add Custom Entries:</strong> Use the custom entry form to add your own ban patterns</li>
 									<li><strong>Test:</strong> Use the Match Tester to verify usernames against your ban rules</li>
-									<li><strong>Export:</strong> Copy the generated list and import it into YaTQA</li>
+									<li><strong>Export:</strong> Copy the generated list or download it as a YBL file</li>
 									<li><strong>Review:</strong> Check the Ban Entries table to see all rules and their reasons</li>
+									<li><strong>Manage:</strong> Use the custom entries manager to view, remove, or clear saved entries</li>
 								</ol>
+							</div>
+							
+							<div class="help-section">
+								<h3>Data Persistence</h3>
+								<p>Your custom ban entries are automatically saved to your browser's local storage and will persist between sessions. Features include:</p>
+								<ul>
+									<li><strong>Automatic Saving:</strong> Custom entries are saved immediately when added</li>
+									<li><strong>Persistent Storage:</strong> Entries remain available when you reload the page</li>
+									<li><strong>Entry Management:</strong> View, remove individual entries, or clear all custom entries</li>
+									<li><strong>Browser-Specific:</strong> Entries are stored per browser and won't sync across devices</li>
+								</ul>
+							</div>
+							
+							<div class="help-section">
+								<h3>Downloading Ban Lists</h3>
+								<p>You can export your generated ban list in multiple ways:</p>
+								<ul>
+									<li><strong>Copy to Clipboard:</strong> Click the "Copy to Clipboard" button to copy the ban list</li>
+									<li><strong>Download YBL File:</strong> Click "Download YBL" to save the ban list as a timestamped .ybl file</li>
+									<li><strong>Import to YaTQA:</strong> Use the downloaded .ybl file or copied content in YaTQA's ban import feature</li>
+								</ul>
 							</div>
 							
 							<div class="help-section">

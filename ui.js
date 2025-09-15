@@ -7,6 +7,7 @@ class UIController {
 	constructor() {
 		this.currentSection = 'generator';
 		this.theme = this.getStoredTheme() || 'auto';
+		this.customEntries = this.loadCustomEntries();
 		
 		this.init();
 	}
@@ -15,10 +16,12 @@ class UIController {
 		this.setupNavigation();
 		this.setupThemeToggle();
 		this.setupCopyButton();
+		this.setupDownloadButton();
 		this.setupMobileMenu();
 		this.setupKeyboardNavigation();
 		this.setupCustomEntryForm();
 		this.applyTheme();
+		this.loadCustomEntriesIntoWords();
 		
 		// Initialize with generator section active
 		this.showSection('generator');
@@ -155,6 +158,33 @@ class UIController {
 		}
 	}
 
+	// localStorage methods for custom entries
+	loadCustomEntries() {
+		try {
+			const stored = localStorage.getItem('teamspeak-ban-generator-custom-entries');
+			return stored ? JSON.parse(stored) : [];
+		} catch (e) {
+			return [];
+		}
+	}
+
+	saveCustomEntries() {
+		try {
+			localStorage.setItem('teamspeak-ban-generator-custom-entries', JSON.stringify(this.customEntries));
+		} catch (e) {
+			// Local storage not available
+		}
+	}
+
+	loadCustomEntriesIntoWords() {
+		// Add stored custom entries to the words array
+		if (typeof window.words !== 'undefined' && this.customEntries.length > 0) {
+			this.customEntries.forEach(entry => {
+				window.words.push(entry);
+			});
+		}
+	}
+
 	setupCopyButton() {
 		const copyBtn = document.getElementById('copy-btn');
 		const textarea = document.getElementById('g-ybl');
@@ -169,6 +199,51 @@ class UIController {
 					this.fallbackCopyTextToClipboard(textarea.value, copyBtn);
 				}
 			});
+		}
+	}
+
+	setupDownloadButton() {
+		const downloadBtn = document.getElementById('download-btn');
+		const textarea = document.getElementById('g-ybl');
+		
+		if (downloadBtn && textarea) {
+			downloadBtn.addEventListener('click', () => {
+				this.downloadYBLFile(textarea.value);
+			});
+		}
+	}
+
+	downloadYBLFile(content) {
+		if (!content.trim()) {
+			this.showFormError('No ban list content to download. Please generate a ban list first.');
+			return;
+		}
+
+		try {
+			// Create blob with UTF-8 encoding
+			const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+			
+			// Create download link
+			const url = window.URL.createObjectURL(blob);
+			const link = document.createElement('a');
+			link.href = url;
+			
+			// Generate filename with timestamp
+			const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+			link.download = `teamspeak-banlist-${timestamp}.ybl`;
+			
+			// Trigger download
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			
+			// Clean up
+			window.URL.revokeObjectURL(url);
+			
+			// Show feedback
+			this.showFormSuccess(`Downloaded ban list as ${link.download}`);
+		} catch (err) {
+			this.showFormError('Failed to download file. Please try copying the content instead.');
 		}
 	}
 
@@ -313,6 +388,7 @@ class UIController {
 	setupCustomEntryForm() {
 		const addButton = document.getElementById('add-custom-entry');
 		const regenerateButton = document.getElementById('regenerate-list');
+		const clearButton = document.getElementById('clear-custom-entries');
 		
 		if (addButton) {
 			addButton.addEventListener('click', () => {
@@ -326,6 +402,12 @@ class UIController {
 			});
 		}
 
+		if (clearButton) {
+			clearButton.addEventListener('click', () => {
+				this.clearAllCustomEntries();
+			});
+		}
+
 		// Enable Enter key submission in word input
 		const wordInput = document.getElementById('custom-word');
 		if (wordInput) {
@@ -336,6 +418,9 @@ class UIController {
 				}
 			});
 		}
+
+		// Update the custom entries display
+		this.updateCustomEntriesDisplay();
 	}
 
 	addCustomEntry() {
@@ -367,10 +452,17 @@ class UIController {
 			reasonText = this.getReasonText(reasonKey);
 		}
 
+		// Create entry
+		const entry = [word, reasonText, flags];
+
 		// Add to the words array
 		if (typeof window.words !== 'undefined') {
-			window.words.push([word, reasonText, flags]);
+			window.words.push(entry);
 		}
+
+		// Save to custom entries and localStorage
+		this.customEntries.push(entry);
+		this.saveCustomEntries();
 
 		// Clear the form
 		wordInput.value = '';
@@ -379,7 +471,10 @@ class UIController {
 		flagsSelect.selectedIndex = 0;
 
 		// Show success feedback
-		this.showFormSuccess(`Added ban entry for "${word}"`);
+		this.showFormSuccess(`Added ban entry for "${word}" (saved to browser storage)`);
+
+		// Update custom entries display
+		this.updateCustomEntriesDisplay();
 
 		// Regenerate the ban list
 		this.regenerateBanList();
@@ -503,6 +598,99 @@ class UIController {
 			
 			text.textContent = message;
 		}
+	}
+
+	updateCustomEntriesDisplay() {
+		const countElement = document.getElementById('custom-entries-count');
+		const listElement = document.getElementById('custom-entries-list');
+		
+		if (countElement) {
+			countElement.textContent = this.customEntries.length;
+		}
+
+		if (listElement) {
+			if (this.customEntries.length === 0) {
+				listElement.innerHTML = '<p class="custom-entries-list__empty">No custom entries saved.</p>';
+			} else {
+				listElement.innerHTML = this.customEntries.map((entry, index) => {
+					const [word, reason, flags] = entry;
+					return `
+						<div class="custom-entries-list__item">
+							<div class="custom-entries-list__entry-info">
+								<div class="custom-entries-list__entry-word">${this.escapeHtml(word)}</div>
+								<div class="custom-entries-list__entry-reason">${this.escapeHtml(reason)} (flags: ${flags})</div>
+							</div>
+							<div class="custom-entries-list__entry-actions">
+								<button type="button" class="btn btn--danger btn--small" 
+									onclick="window.uiController.removeCustomEntry(${index})"
+									aria-label="Remove custom entry: ${this.escapeHtml(word)}">
+									<span class="btn__icon">🗑️</span>
+								</button>
+							</div>
+						</div>
+					`;
+				}).join('');
+			}
+		}
+	}
+
+	removeCustomEntry(index) {
+		if (index >= 0 && index < this.customEntries.length) {
+			const removedEntry = this.customEntries.splice(index, 1)[0];
+			this.saveCustomEntries();
+			this.updateCustomEntriesDisplay();
+			
+			// Remove from words array if it exists
+			if (typeof window.words !== 'undefined') {
+				const wordIndex = window.words.findIndex(entry => 
+					entry[0] === removedEntry[0] && 
+					entry[1] === removedEntry[1] && 
+					entry[2] === removedEntry[2]
+				);
+				if (wordIndex !== -1) {
+					window.words.splice(wordIndex, 1);
+				}
+			}
+
+			this.showFormSuccess(`Removed custom entry for "${removedEntry[0]}"`);
+			this.regenerateBanList();
+		}
+	}
+
+	clearAllCustomEntries() {
+		if (this.customEntries.length === 0) {
+			this.showFormError('No custom entries to clear.');
+			return;
+		}
+
+		if (confirm(`Are you sure you want to remove all ${this.customEntries.length} custom entries? This action cannot be undone.`)) {
+			// Remove custom entries from words array
+			if (typeof window.words !== 'undefined') {
+				this.customEntries.forEach(customEntry => {
+					const wordIndex = window.words.findIndex(entry => 
+						entry[0] === customEntry[0] && 
+						entry[1] === customEntry[1] && 
+						entry[2] === customEntry[2]
+					);
+					if (wordIndex !== -1) {
+						window.words.splice(wordIndex, 1);
+					}
+				});
+			}
+
+			const count = this.customEntries.length;
+			this.customEntries = [];
+			this.saveCustomEntries();
+			this.updateCustomEntriesDisplay();
+			this.showFormSuccess(`Cleared ${count} custom entries from storage.`);
+			this.regenerateBanList();
+		}
+	}
+
+	escapeHtml(text) {
+		const div = document.createElement('div');
+		div.textContent = text;
+		return div.innerHTML;
 	}
 }
 
