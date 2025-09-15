@@ -11,7 +11,9 @@ function matchTester(input, against) {
 	return matchArray;
 }
 
-function matchTesterToOutput(matchArray, textareaElement = document.querySelector(".match-tester--matches")) {
+function matchTesterToOutput(matchArray, textareaElement = document.querySelector("#match-tester-output") || document.querySelector(".match-tester--matches")) {
+	if (!textareaElement) return;
+	
 	textareaElement.value = "";
 	for(let match of matchArray) {
 		textareaElement.value += match[0] + "\t\t" + match[1] + "\n";

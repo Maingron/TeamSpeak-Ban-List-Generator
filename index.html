@@ -1,25 +1,343 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Maingrons Teamspeak Banlist generator</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>TeamSpeak Ban List Generator - Maingron</title>
+		<meta name="description" content="Generate comprehensive regex-based ban lists for TeamSpeak servers with YaTQA import support">
 		<link rel="shortcut icon" href="logo.svg">
 		<link rel="stylesheet" type="text/css" href="css/style.min.css">
 	</head>
 	<body>
 		<div class="bg-image"></div>
-		<div>
-			<section class="section-tester">
-				<h2>Tester </h2>
-				<input class="match-tester" type="text" placeholder="Match Tester" oninput="matchTester(this.value, allBanEntries)">
-				<textarea name="match-tester--matches" class="match-tester--matches" rows="5" placeholder="Matching matches will be displayed here" readonly></textarea>
-			</section>
+		
+		<!-- Header with Navigation -->
+		<header class="header" role="banner">
+			<div class="container">
+				<h1 class="header__title">TeamSpeak Ban List Generator</h1>
+				<nav class="nav" role="navigation" aria-label="Main navigation">
+					<button class="nav__toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+						<span class="nav__hamburger"></span>
+					</button>
+					<ul class="nav__menu" role="menubar">
+						<li role="none">
+							<button class="nav__item nav__item--active" role="menuitem" data-section="generator" aria-selected="true">
+								<span class="nav__icon">🛡️</span>
+								Ban List Generator
+							</button>
+						</li>
+						<li role="none">
+							<button class="nav__item" role="menuitem" data-section="tester" aria-selected="false">
+								<span class="nav__icon">🔍</span>
+								Match Tester
+							</button>
+						</li>
+						<li role="none">
+							<button class="nav__item" role="menuitem" data-section="table" aria-selected="false">
+								<span class="nav__icon">📋</span>
+								Ban Entries
+							</button>
+						</li>
+						<li role="none">
+							<button class="nav__item" role="menuitem" data-section="help" aria-selected="false">
+								<span class="nav__icon">❓</span>
+								Help & Info
+							</button>
+						</li>
+					</ul>
+				</nav>
+				<button class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+					<span class="theme-toggle__icon">🌙</span>
+				</button>
+			</div>
+		</header>
 
-			<section class="section-output">
-				<h2>Generated Yatqa Ban List </h2>
-				<textarea name="g-ybl" id="g-ybl" readonly></textarea>
-				<table></table>
-			</section>
-		</div>
+		<!-- Main Content -->
+		<main class="main" role="main">
+			<div class="container">
+				<!-- Ban List Generator Section -->
+				<section id="section-generator" class="section section--active" aria-labelledby="generator-heading">
+					<div class="section__header">
+						<h2 id="generator-heading" class="section__title">Ban List Generator</h2>
+						<p class="section__description">Generate comprehensive regex-based ban lists for your TeamSpeak server. The generated list can be imported directly into YaTQA.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="generator-controls">
+							<div class="generator-status" id="generator-status" aria-live="polite">
+								<span class="status-indicator">✅</span>
+								<span class="status-text">Ban list generated successfully</span>
+							</div>
+							
+							<div class="custom-entry-form">
+								<h3 class="custom-entry-form__title">Add Custom Ban Entry</h3>
+								<div class="custom-entry-form__fields">
+									<div class="form-field">
+										<label for="custom-word" class="form-field__label">Word/Pattern:</label>
+										<input 
+											type="text" 
+											id="custom-word" 
+											class="form-field__input" 
+											placeholder="Enter word or pattern to ban"
+											aria-describedby="custom-word-help">
+										<small id="custom-word-help" class="form-field__help">
+											Enter the word or pattern you want to ban (e.g., "spam", "badword")
+										</small>
+									</div>
+									
+									<div class="form-field">
+										<label for="custom-reason" class="form-field__label">Ban Reason:</label>
+										<select id="custom-reason" class="form-field__select" aria-describedby="custom-reason-help">
+											<option value="spam">Spam</option>
+											<option value="obscene">Obscene Language</option>
+											<option value="impersonation">Impersonation</option>
+											<option value="adminImpersonation">Admin Impersonation</option>
+											<option value="defaultName">Default/Generic Name</option>
+											<option value="undefined">Custom/Other</option>
+										</select>
+										<small id="custom-reason-help" class="form-field__help">
+											Select the category that best describes why this should be banned
+										</small>
+									</div>
+									
+									<div class="form-field">
+										<label for="custom-reason-text" class="form-field__label">Custom Reason (optional):</label>
+										<input 
+											type="text" 
+											id="custom-reason-text" 
+											class="form-field__input" 
+											placeholder="Enter custom ban reason"
+											aria-describedby="custom-reason-text-help">
+										<small id="custom-reason-text-help" class="form-field__help">
+											Override the default reason with your own custom message
+										</small>
+									</div>
+									
+									<div class="form-field">
+										<label for="custom-flags" class="form-field__label">Pattern Flags:</label>
+										<select id="custom-flags" class="form-field__select" aria-describedby="custom-flags-help">
+											<option value="9">Basic (0b1001) - Normal word matching</option>
+											<option value="15">Strict (0b1111) - Strict word boundary matching</option>
+											<option value="1">Loose (0b0001) - Matches anywhere in nickname</option>
+											<option value="7">Word boundary (0b0111) - Must be separate word</option>
+										</select>
+										<small id="custom-flags-help" class="form-field__help">
+											Controls how strictly the pattern is matched
+										</small>
+									</div>
+								</div>
+								
+								<div class="custom-entry-form__actions">
+									<button type="button" class="btn btn--primary" id="add-custom-entry">
+										<span class="btn__icon">➕</span>
+										Add Entry
+									</button>
+									<button type="button" class="btn btn--secondary" id="regenerate-list">
+										<span class="btn__icon">🔄</span>
+										Regenerate List
+									</button>
+								</div>
+							</div>
+
+							<div class="custom-entries-manager" id="custom-entries-manager">
+								<details class="custom-entries-manager__details">
+									<summary class="custom-entries-manager__summary">
+										<span class="summary-icon">📋</span>
+										Manage Custom Entries (<span id="custom-entries-count">0</span> saved)
+									</summary>
+									<div class="custom-entries-manager__content">
+										<div class="custom-entries-manager__actions">
+											<button type="button" class="btn btn--danger btn--small" id="clear-custom-entries">
+												<span class="btn__icon">🗑️</span>
+												Clear All Custom Entries
+											</button>
+										</div>
+										<div class="custom-entries-list" id="custom-entries-list">
+											<p class="custom-entries-list__empty">No custom entries saved.</p>
+										</div>
+									</div>
+								</details>
+							</div>
+						</div>
+						
+						<div class="output-container">
+							<div class="output__header">
+								<h3 class="output__title">Generated YaTQA Ban List</h3>
+								<div class="output__actions">
+									<button class="btn btn--secondary" id="copy-btn" aria-label="Copy ban list to clipboard">
+										<span class="btn__icon">📋</span>
+										Copy to Clipboard
+									</button>
+									<button class="btn btn--primary" id="download-btn" aria-label="Download ban list as YBL file">
+										<span class="btn__icon">💾</span>
+										Download YBL
+									</button>
+								</div>
+							</div>
+							<textarea name="g-ybl" id="g-ybl" readonly 
+								aria-label="Generated ban list for YaTQA import" 
+								aria-describedby="generator-status"></textarea>
+						</div>
+					</div>
+				</section>
+
+				<!-- Match Tester Section -->
+				<section id="section-tester" class="section" aria-labelledby="tester-heading">
+					<div class="section__header">
+						<h2 id="tester-heading" class="section__title">Match Tester</h2>
+						<p class="section__description">Test if a username would be caught by any of the generated ban rules. Enter a test name below to see which rules it matches.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="tester-controls">
+							<label for="match-tester-input" class="visually-hidden">Test username input</label>
+							<input 
+								id="match-tester-input"
+								class="match-tester" 
+								type="text" 
+								placeholder="Enter a username to test against ban rules..." 
+								aria-describedby="tester-description">
+						</div>
+						
+						<div class="tester-results">
+							<label for="match-tester-output" class="tester-results__label">Matching Rules:</label>
+							<textarea 
+								id="match-tester-output"
+								name="match-tester--matches" 
+								class="match-tester--matches" 
+								rows="8" 
+								placeholder="Matching ban rules will be displayed here..."
+								readonly
+								aria-label="List of matching ban rules"></textarea>
+						</div>
+					</div>
+				</section>
+
+				<!-- Ban Entries Table Section -->
+				<section id="section-table" class="section" aria-labelledby="table-heading">
+					<div class="section__header">
+						<h2 id="table-heading" class="section__title">Ban Entries Overview</h2>
+						<p class="section__description">View all generated ban entries with their corresponding reasons. This table shows the regex patterns and explanations for each ban rule.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="table-container">
+							<table class="ban-table" role="table" aria-label="Ban entries with patterns and reasons">
+								<thead>
+									<tr>
+										<th scope="col">Regex Pattern</th>
+										<th scope="col">Ban Reason</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- Table content will be populated by JavaScript -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+
+				<!-- Help & Info Section -->
+				<section id="section-help" class="section" aria-labelledby="help-heading">
+					<div class="section__header">
+						<h2 id="help-heading" class="section__title">Help & Information</h2>
+						<p class="section__description">Learn how to use the ban list generator and understand the various features available.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="help-content">
+							<div class="help-section">
+								<h3>How to Use</h3>
+								<ol>
+									<li><strong>Generate:</strong> The ban list is automatically generated when you load the page</li>
+									<li><strong>Add Custom Entries:</strong> Use the custom entry form to add your own ban patterns</li>
+									<li><strong>Test:</strong> Use the Match Tester to verify usernames against your ban rules</li>
+									<li><strong>Export:</strong> Copy the generated list or download it as a YBL file</li>
+									<li><strong>Review:</strong> Check the Ban Entries table to see all rules and their reasons</li>
+									<li><strong>Manage:</strong> Use the custom entries manager to view, remove, or clear saved entries</li>
+								</ol>
+							</div>
+							
+							<div class="help-section">
+								<h3>Data Persistence</h3>
+								<p>Your custom ban entries are automatically saved to your browser's local storage and will persist between sessions. Features include:</p>
+								<ul>
+									<li><strong>Automatic Saving:</strong> Custom entries are saved immediately when added</li>
+									<li><strong>Persistent Storage:</strong> Entries remain available when you reload the page</li>
+									<li><strong>Entry Management:</strong> View, remove individual entries, or clear all custom entries</li>
+									<li><strong>Browser-Specific:</strong> Entries are stored per browser and won't sync across devices</li>
+								</ul>
+							</div>
+							
+							<div class="help-section">
+								<h3>Downloading Ban Lists</h3>
+								<p>You can export your generated ban list in multiple ways:</p>
+								<ul>
+									<li><strong>Copy to Clipboard:</strong> Click the "Copy to Clipboard" button to copy the ban list</li>
+									<li><strong>Download YBL File:</strong> Click "Download YBL" to save the ban list as a timestamped .ybl file</li>
+									<li><strong>Import to YaTQA:</strong> Use the downloaded .ybl file or copied content in YaTQA's ban import feature</li>
+								</ul>
+							</div>
+							
+							<div class="help-section">
+								<h3>Features</h3>
+								<ul>
+									<li>Comprehensive character replacement patterns</li>
+									<li>Obscene language detection</li>
+									<li>Admin impersonation prevention</li>
+									<li>URL and advertisement blocking</li>
+									<li>Unicode character normalization</li>
+									<li>Custom ban entry addition</li>
+									<li>YaTQA-compatible regex output</li>
+								</ul>
+							</div>
+							
+							<div class="help-section">
+								<h3>Adding Custom Ban Entries</h3>
+								<p>You can add your own custom ban patterns using the form in the Ban List Generator section:</p>
+								<ul>
+									<li><strong>Word/Pattern:</strong> Enter the word or pattern you want to ban (e.g., "spam", "badword")</li>
+									<li><strong>Ban Reason:</strong> Select a predefined category or choose "Custom/Other"</li>
+									<li><strong>Custom Reason:</strong> Override with your own custom ban message (optional)</li>
+									<li><strong>Pattern Flags:</strong> Control how strictly the pattern is matched:
+										<ul>
+											<li><em>Basic (0b1001):</em> Normal word matching with character variations</li>
+											<li><em>Strict (0b1111):</em> Strict word boundary matching</li>
+											<li><em>Loose (0b0001):</em> Matches anywhere in the nickname</li>
+											<li><em>Word boundary (0b0111):</em> Must be a separate word</li>
+										</ul>
+									</li>
+								</ul>
+								<p><strong>Workflow:</strong> After adding entries, click "Regenerate List" to update the ban list with your custom patterns. This manual step prevents accidental regeneration and gives you full control over when the output is updated.</p>
+							</div>
+
+							<div class="help-section">
+								<h3>Regex Pattern Information</h3>
+								<p>The generated patterns use standard regex syntax:</p>
+								<ul>
+									<li><code>.*</code> - matches any characters</li>
+									<li><code>[abc]</code> - matches any of the characters a, b, or c</li>
+									<li><code>\\s</code> - matches whitespace</li>
+									<li>Maximum pattern length: 255 characters (TeamSpeak limitation)</li>
+								</ul>
+							</div>
+
+							<div class="help-section">
+								<h3>About</h3>
+								<p>This tool generates regex-based ban lists for TeamSpeak servers that can be imported using YaTQA. It helps prevent usernames with offensive content, impersonation attempts, and various Unicode abuse patterns.</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer" role="contentinfo">
+			<div class="container">
+				<p>&copy; 2024 Maingron - TeamSpeak Ban List Generator</p>
+			</div>
+		</footer>
 
 		<script>
 			let allBanEntries = [];
@@ -31,5 +349,6 @@
 		<script src="generateCharsetBan.js"></script>
 		<script src="yatqaConverter.js"></script>
 		<script src="generator.js"></script>
+		<script src="ui.js"></script>
 	</body>
 </html>
