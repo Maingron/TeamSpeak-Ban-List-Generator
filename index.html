@@ -68,6 +68,76 @@
 								<span class="status-indicator">✅</span>
 								<span class="status-text">Ban list generated successfully</span>
 							</div>
+							
+							<div class="custom-entry-form">
+								<h3 class="custom-entry-form__title">Add Custom Ban Entry</h3>
+								<div class="custom-entry-form__fields">
+									<div class="form-field">
+										<label for="custom-word" class="form-field__label">Word/Pattern:</label>
+										<input 
+											type="text" 
+											id="custom-word" 
+											class="form-field__input" 
+											placeholder="Enter word or pattern to ban"
+											aria-describedby="custom-word-help">
+										<small id="custom-word-help" class="form-field__help">
+											Enter the word or pattern you want to ban (e.g., "spam", "badword")
+										</small>
+									</div>
+									
+									<div class="form-field">
+										<label for="custom-reason" class="form-field__label">Ban Reason:</label>
+										<select id="custom-reason" class="form-field__select" aria-describedby="custom-reason-help">
+											<option value="spam">Spam</option>
+											<option value="obscene">Obscene Language</option>
+											<option value="impersonation">Impersonation</option>
+											<option value="adminImpersonation">Admin Impersonation</option>
+											<option value="defaultName">Default/Generic Name</option>
+											<option value="undefined">Custom/Other</option>
+										</select>
+										<small id="custom-reason-help" class="form-field__help">
+											Select the category that best describes why this should be banned
+										</small>
+									</div>
+									
+									<div class="form-field">
+										<label for="custom-reason-text" class="form-field__label">Custom Reason (optional):</label>
+										<input 
+											type="text" 
+											id="custom-reason-text" 
+											class="form-field__input" 
+											placeholder="Enter custom ban reason"
+											aria-describedby="custom-reason-text-help">
+										<small id="custom-reason-text-help" class="form-field__help">
+											Override the default reason with your own custom message
+										</small>
+									</div>
+									
+									<div class="form-field">
+										<label for="custom-flags" class="form-field__label">Pattern Flags:</label>
+										<select id="custom-flags" class="form-field__select" aria-describedby="custom-flags-help">
+											<option value="9">Basic (0b1001) - Normal word matching</option>
+											<option value="15">Strict (0b1111) - Strict word boundary matching</option>
+											<option value="1">Loose (0b0001) - Matches anywhere in nickname</option>
+											<option value="7">Word boundary (0b0111) - Must be separate word</option>
+										</select>
+										<small id="custom-flags-help" class="form-field__help">
+											Controls how strictly the pattern is matched
+										</small>
+									</div>
+								</div>
+								
+								<div class="custom-entry-form__actions">
+									<button type="button" class="btn btn--primary" id="add-custom-entry">
+										<span class="btn__icon">➕</span>
+										Add Entry
+									</button>
+									<button type="button" class="btn btn--secondary" id="regenerate-list">
+										<span class="btn__icon">🔄</span>
+										Regenerate List
+									</button>
+								</div>
+							</div>
 						</div>
 						
 						<div class="output-container">
@@ -155,6 +225,7 @@
 								<h3>How to Use</h3>
 								<ol>
 									<li><strong>Generate:</strong> The ban list is automatically generated when you load the page</li>
+									<li><strong>Add Custom Entries:</strong> Use the custom entry form to add your own ban patterns</li>
 									<li><strong>Test:</strong> Use the Match Tester to verify usernames against your ban rules</li>
 									<li><strong>Export:</strong> Copy the generated list and import it into YaTQA</li>
 									<li><strong>Review:</strong> Check the Ban Entries table to see all rules and their reasons</li>
@@ -169,10 +240,30 @@
 									<li>Admin impersonation prevention</li>
 									<li>URL and advertisement blocking</li>
 									<li>Unicode character normalization</li>
+									<li>Custom ban entry addition</li>
 									<li>YaTQA-compatible regex output</li>
 								</ul>
 							</div>
 							
+							<div class="help-section">
+								<h3>Adding Custom Ban Entries</h3>
+								<p>You can add your own custom ban patterns using the form in the Ban List Generator section:</p>
+								<ul>
+									<li><strong>Word/Pattern:</strong> Enter the word or pattern you want to ban (e.g., "spam", "badword")</li>
+									<li><strong>Ban Reason:</strong> Select a predefined category or choose "Custom/Other"</li>
+									<li><strong>Custom Reason:</strong> Override with your own custom ban message (optional)</li>
+									<li><strong>Pattern Flags:</strong> Control how strictly the pattern is matched:
+										<ul>
+											<li><em>Basic (0b1001):</em> Normal word matching with character variations</li>
+											<li><em>Strict (0b1111):</em> Strict word boundary matching</li>
+											<li><em>Loose (0b0001):</em> Matches anywhere in the nickname</li>
+											<li><em>Word boundary (0b0111):</em> Must be a separate word</li>
+										</ul>
+									</li>
+								</ul>
+								<p>After adding entries, click "Regenerate List" to update the ban list with your custom patterns.</p>
+							</div>
+
 							<div class="help-section">
 								<h3>Regex Pattern Information</h3>
 								<p>The generated patterns use standard regex syntax:</p>

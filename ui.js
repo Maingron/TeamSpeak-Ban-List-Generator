@@ -17,6 +17,7 @@ class UIController {
 		this.setupCopyButton();
 		this.setupMobileMenu();
 		this.setupKeyboardNavigation();
+		this.setupCustomEntryForm();
 		this.applyTheme();
 		
 		// Initialize with generator section active
@@ -307,6 +308,175 @@ class UIController {
 				}
 			}
 		});
+	}
+
+	setupCustomEntryForm() {
+		const addButton = document.getElementById('add-custom-entry');
+		const regenerateButton = document.getElementById('regenerate-list');
+		
+		if (addButton) {
+			addButton.addEventListener('click', () => {
+				this.addCustomEntry();
+			});
+		}
+		
+		if (regenerateButton) {
+			regenerateButton.addEventListener('click', () => {
+				this.regenerateBanList();
+			});
+		}
+
+		// Enable Enter key submission in word input
+		const wordInput = document.getElementById('custom-word');
+		if (wordInput) {
+			wordInput.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter') {
+					e.preventDefault();
+					this.addCustomEntry();
+				}
+			});
+		}
+	}
+
+	addCustomEntry() {
+		const wordInput = document.getElementById('custom-word');
+		const reasonSelect = document.getElementById('custom-reason');
+		const customReasonInput = document.getElementById('custom-reason-text');
+		const flagsSelect = document.getElementById('custom-flags');
+		
+		if (!wordInput || !reasonSelect || !flagsSelect) {
+			return;
+		}
+
+		const word = wordInput.value.trim();
+		const reasonKey = reasonSelect.value;
+		const customReason = customReasonInput.value.trim();
+		const flags = parseInt(flagsSelect.value);
+
+		if (!word) {
+			this.showFormError('Please enter a word or pattern to ban.');
+			wordInput.focus();
+			return;
+		}
+
+		// Get the reason text
+		let reasonText;
+		if (customReason) {
+			reasonText = customReason;
+		} else {
+			reasonText = this.getReasonText(reasonKey);
+		}
+
+		// Add to the words array
+		if (typeof window.words !== 'undefined') {
+			window.words.push([word, reasonText, flags]);
+		}
+
+		// Clear the form
+		wordInput.value = '';
+		customReasonInput.value = '';
+		reasonSelect.selectedIndex = 0;
+		flagsSelect.selectedIndex = 0;
+
+		// Show success feedback
+		this.showFormSuccess(`Added ban entry for "${word}"`);
+
+		// Regenerate the ban list
+		this.regenerateBanList();
+	}
+
+	getReasonText(reasonKey) {
+		const reasonMap = {
+			'spam': 'Spam',
+			'obscene': 'We don\'t use such words here...',
+			'impersonation': 'Impersonation',
+			'adminImpersonation': 'Impersonation of admin',
+			'defaultName': 'Your nickname has to be more unique',
+			'undefined': 'Reason unknown'
+		};
+		
+		return reasonMap[reasonKey] || 'Reason unknown';
+	}
+
+	regenerateBanList() {
+		// Clear existing entries
+		if (window.allBanEntries) {
+			window.allBanEntries.length = 0;
+		}
+		
+		// Clear table
+		if (window.tableOutput && window.tableOutput.clearTable) {
+			window.tableOutput.clearTable();
+		}
+
+		// Clear textarea
+		const textarea = document.getElementById('g-ybl');
+		if (textarea) {
+			textarea.value = '';
+		}
+
+		// Update status
+		this.updateGeneratorStatus('loading', 'Regenerating ban list...');
+
+		// Regenerate (call the original generation function)
+		setTimeout(() => {
+			if (typeof window.startSequentialProcess === 'function') {
+				window.startSequentialProcess();
+				
+				// Update status
+				setTimeout(() => {
+					if (window.allBanEntries && window.allBanEntries.length > 0) {
+						this.updateGeneratorStatus('success', 
+							`Generated ${window.allBanEntries.length} ban entries successfully`);
+					} else {
+						this.updateGeneratorStatus('warning', 'No ban entries generated');
+					}
+				}, 100);
+			}
+		}, 100);
+	}
+
+	showFormError(message) {
+		this.showFormMessage(message, 'error');
+	}
+
+	showFormSuccess(message) {
+		this.showFormMessage(message, 'success');
+	}
+
+	showFormMessage(message, type) {
+		// Remove existing messages
+		const existingMessage = document.querySelector('.form-message');
+		if (existingMessage) {
+			existingMessage.remove();
+		}
+
+		// Create new message
+		const messageEl = document.createElement('div');
+		messageEl.className = `form-message form-message--${type}`;
+		messageEl.textContent = message;
+		messageEl.style.cssText = `
+			padding: var(--spacing-sm) var(--spacing-md);
+			margin-bottom: var(--spacing-md);
+			border-radius: var(--border-radius-sm);
+			font-size: 0.875rem;
+			background: ${type === 'error' ? 'var(--color-error)' : 'var(--color-success)'};
+			color: white;
+			border: 1px solid ${type === 'error' ? 'var(--color-error)' : 'var(--color-success)'};
+		`;
+
+		// Insert before the form fields
+		const form = document.querySelector('.custom-entry-form__fields');
+		if (form) {
+			form.parentNode.insertBefore(messageEl, form);
+		}
+
+		// Auto-remove after 5 seconds
+		setTimeout(() => {
+			if (messageEl.parentNode) {
+				messageEl.remove();
+			}
+		}, 5000);
 	}
 
 	// Public method to update generator status
