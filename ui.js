@@ -774,10 +774,8 @@ function enhancedMatchTester(input, against) {
 
 // Initialize UI when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-	// Replace the old table output with enhanced version
-	if (typeof window.tableOutput !== 'undefined') {
-		window.tableOutput = EnhancedTableOutput();
-	}
+	// Initialize the enhanced table output
+	window.tableOutput = EnhancedTableOutput();
 	
 	// Initialize UI controller
 	window.uiController = new UIController();
