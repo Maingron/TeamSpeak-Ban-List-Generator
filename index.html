@@ -1,25 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Maingrons Teamspeak Banlist generator</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>TeamSpeak Ban List Generator - Maingron</title>
+		<meta name="description" content="Generate comprehensive regex-based ban lists for TeamSpeak servers with YaTQA import support">
 		<link rel="shortcut icon" href="logo.svg">
 		<link rel="stylesheet" type="text/css" href="css/style.min.css">
 	</head>
 	<body>
 		<div class="bg-image"></div>
-		<div>
-			<section class="section-tester">
-				<h2>Tester </h2>
-				<input class="match-tester" type="text" placeholder="Match Tester" oninput="matchTester(this.value, allBanEntries)">
-				<textarea name="match-tester--matches" class="match-tester--matches" rows="5" placeholder="Matching matches will be displayed here" readonly></textarea>
-			</section>
+		
+		<!-- Header with Navigation -->
+		<header class="header" role="banner">
+			<div class="container">
+				<h1 class="header__title">TeamSpeak Ban List Generator</h1>
+				<nav class="nav" role="navigation" aria-label="Main navigation">
+					<button class="nav__toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+						<span class="nav__hamburger"></span>
+					</button>
+					<ul class="nav__menu" role="menubar">
+						<li role="none">
+							<button class="nav__item nav__item--active" role="menuitem" data-section="generator" aria-selected="true">
+								<span class="nav__icon">🛡️</span>
+								Ban List Generator
+							</button>
+						</li>
+						<li role="none">
+							<button class="nav__item" role="menuitem" data-section="tester" aria-selected="false">
+								<span class="nav__icon">🔍</span>
+								Match Tester
+							</button>
+						</li>
+						<li role="none">
+							<button class="nav__item" role="menuitem" data-section="table" aria-selected="false">
+								<span class="nav__icon">📋</span>
+								Ban Entries
+							</button>
+						</li>
+						<li role="none">
+							<button class="nav__item" role="menuitem" data-section="help" aria-selected="false">
+								<span class="nav__icon">❓</span>
+								Help & Info
+							</button>
+						</li>
+					</ul>
+				</nav>
+				<button class="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+					<span class="theme-toggle__icon">🌙</span>
+				</button>
+			</div>
+		</header>
 
-			<section class="section-output">
-				<h2>Generated Yatqa Ban List </h2>
-				<textarea name="g-ybl" id="g-ybl" readonly></textarea>
-				<table></table>
-			</section>
-		</div>
+		<!-- Main Content -->
+		<main class="main" role="main">
+			<div class="container">
+				<!-- Ban List Generator Section -->
+				<section id="section-generator" class="section section--active" aria-labelledby="generator-heading">
+					<div class="section__header">
+						<h2 id="generator-heading" class="section__title">Ban List Generator</h2>
+						<p class="section__description">Generate comprehensive regex-based ban lists for your TeamSpeak server. The generated list can be imported directly into YaTQA.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="generator-controls">
+							<div class="generator-status" id="generator-status" aria-live="polite">
+								<span class="status-indicator">✅</span>
+								<span class="status-text">Ban list generated successfully</span>
+							</div>
+						</div>
+						
+						<div class="output-container">
+							<div class="output__header">
+								<h3 class="output__title">Generated YaTQA Ban List</h3>
+								<button class="btn btn--secondary" id="copy-btn" aria-label="Copy ban list to clipboard">
+									<span class="btn__icon">📋</span>
+									Copy to Clipboard
+								</button>
+							</div>
+							<textarea name="g-ybl" id="g-ybl" readonly 
+								aria-label="Generated ban list for YaTQA import" 
+								aria-describedby="generator-status"></textarea>
+						</div>
+					</div>
+				</section>
+
+				<!-- Match Tester Section -->
+				<section id="section-tester" class="section" aria-labelledby="tester-heading">
+					<div class="section__header">
+						<h2 id="tester-heading" class="section__title">Match Tester</h2>
+						<p class="section__description">Test if a username would be caught by any of the generated ban rules. Enter a test name below to see which rules it matches.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="tester-controls">
+							<label for="match-tester-input" class="visually-hidden">Test username input</label>
+							<input 
+								id="match-tester-input"
+								class="match-tester" 
+								type="text" 
+								placeholder="Enter a username to test against ban rules..." 
+								oninput="matchTester(this.value, allBanEntries)"
+								aria-describedby="tester-description">
+						</div>
+						
+						<div class="tester-results">
+							<label for="match-tester-output" class="tester-results__label">Matching Rules:</label>
+							<textarea 
+								id="match-tester-output"
+								name="match-tester--matches" 
+								class="match-tester--matches" 
+								rows="8" 
+								placeholder="Matching ban rules will be displayed here..."
+								readonly
+								aria-label="List of matching ban rules"></textarea>
+						</div>
+					</div>
+				</section>
+
+				<!-- Ban Entries Table Section -->
+				<section id="section-table" class="section" aria-labelledby="table-heading">
+					<div class="section__header">
+						<h2 id="table-heading" class="section__title">Ban Entries Overview</h2>
+						<p class="section__description">View all generated ban entries with their corresponding reasons. This table shows the regex patterns and explanations for each ban rule.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="table-container">
+							<table class="ban-table" role="table" aria-label="Ban entries with patterns and reasons">
+								<thead>
+									<tr>
+										<th scope="col">Regex Pattern</th>
+										<th scope="col">Ban Reason</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- Table content will be populated by JavaScript -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+
+				<!-- Help & Info Section -->
+				<section id="section-help" class="section" aria-labelledby="help-heading">
+					<div class="section__header">
+						<h2 id="help-heading" class="section__title">Help & Information</h2>
+						<p class="section__description">Learn how to use the ban list generator and understand the various features available.</p>
+					</div>
+					
+					<div class="section__content">
+						<div class="help-content">
+							<div class="help-section">
+								<h3>How to Use</h3>
+								<ol>
+									<li><strong>Generate:</strong> The ban list is automatically generated when you load the page</li>
+									<li><strong>Test:</strong> Use the Match Tester to verify usernames against your ban rules</li>
+									<li><strong>Export:</strong> Copy the generated list and import it into YaTQA</li>
+									<li><strong>Review:</strong> Check the Ban Entries table to see all rules and their reasons</li>
+								</ol>
+							</div>
+							
+							<div class="help-section">
+								<h3>Features</h3>
+								<ul>
+									<li>Comprehensive character replacement patterns</li>
+									<li>Obscene language detection</li>
+									<li>Admin impersonation prevention</li>
+									<li>URL and advertisement blocking</li>
+									<li>Unicode character normalization</li>
+									<li>YaTQA-compatible regex output</li>
+								</ul>
+							</div>
+							
+							<div class="help-section">
+								<h3>Regex Pattern Information</h3>
+								<p>The generated patterns use standard regex syntax:</p>
+								<ul>
+									<li><code>.*</code> - matches any characters</li>
+									<li><code>[abc]</code> - matches any of the characters a, b, or c</li>
+									<li><code>\\s</code> - matches whitespace</li>
+									<li>Maximum pattern length: 255 characters (TeamSpeak limitation)</li>
+								</ul>
+							</div>
+
+							<div class="help-section">
+								<h3>About</h3>
+								<p>This tool generates regex-based ban lists for TeamSpeak servers that can be imported using YaTQA. It helps prevent usernames with offensive content, impersonation attempts, and various Unicode abuse patterns.</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer" role="contentinfo">
+			<div class="container">
+				<p>&copy; 2024 Maingron - TeamSpeak Ban List Generator</p>
+			</div>
+		</footer>
 
 		<script>
 			let allBanEntries = [];
@@ -31,5 +211,6 @@
 		<script src="generateCharsetBan.js"></script>
 		<script src="yatqaConverter.js"></script>
 		<script src="generator.js"></script>
+		<script src="ui.js"></script>
 	</body>
 </html>
