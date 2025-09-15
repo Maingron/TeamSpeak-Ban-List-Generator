@@ -8,6 +8,7 @@ class UIController {
 		this.currentSection = 'generator';
 		this.theme = this.getStoredTheme() || 'auto';
 		this.customEntries = this.loadCustomEntries();
+		this.isInitializing = true;
 		
 		this.init();
 	}
@@ -25,6 +26,32 @@ class UIController {
 		
 		// Initialize with generator section active
 		this.showSection('generator');
+		
+		// Generate initial ban list with custom entries
+		this.performInitialGeneration();
+	}
+
+	performInitialGeneration() {
+		// Update status
+		this.updateGeneratorStatus('loading', 'Generating ban list...');
+		
+		// Run generation after a short delay to ensure everything is loaded
+		setTimeout(() => {
+			if (typeof window.startSequentialProcess === 'function') {
+				window.startSequentialProcess();
+				
+				// Update status
+				setTimeout(() => {
+					if (window.allBanEntries && window.allBanEntries.length > 0) {
+						this.updateGeneratorStatus('success', 
+							`Generated ${window.allBanEntries.length} ban entries successfully`);
+					} else {
+						this.updateGeneratorStatus('warning', 'No ban entries generated');
+					}
+					this.isInitializing = false;
+				}, 100);
+			}
+		}, 100);
 	}
 
 	setupNavigation() {
@@ -476,8 +503,8 @@ class UIController {
 		// Update custom entries display
 		this.updateCustomEntriesDisplay();
 
-		// Regenerate the ban list
-		this.regenerateBanList();
+		// Don't automatically regenerate - let user decide
+		this.showFormSuccess(`Added "${word}" to ban list. Click "Regenerate List" to update the generated output.`);
 	}
 
 	getReasonText(reasonKey) {
@@ -494,20 +521,9 @@ class UIController {
 	}
 
 	regenerateBanList() {
-		// Clear existing entries
-		if (window.allBanEntries) {
-			window.allBanEntries.length = 0;
-		}
-		
-		// Clear table
-		if (window.tableOutput && window.tableOutput.clearTable) {
-			window.tableOutput.clearTable();
-		}
-
-		// Clear textarea
-		const textarea = document.getElementById('g-ybl');
-		if (textarea) {
-			textarea.value = '';
+		// Prevent recursion during initialization
+		if (this.isInitializing) {
+			return;
 		}
 
 		// Update status
@@ -652,8 +668,7 @@ class UIController {
 				}
 			}
 
-			this.showFormSuccess(`Removed custom entry for "${removedEntry[0]}"`);
-			this.regenerateBanList();
+			this.showFormSuccess(`Removed custom entry for "${removedEntry[0]}". Click "Regenerate List" to update the output.`);
 		}
 	}
 
@@ -682,8 +697,7 @@ class UIController {
 			this.customEntries = [];
 			this.saveCustomEntries();
 			this.updateCustomEntriesDisplay();
-			this.showFormSuccess(`Cleared ${count} custom entries from storage.`);
-			this.regenerateBanList();
+			this.showFormSuccess(`Cleared ${count} custom entries from storage. Click "Regenerate List" to update the output.`);
 		}
 	}
 
@@ -767,31 +781,31 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	// Initialize UI controller
 	window.uiController = new UIController();
-	
-	// Update status when generator runs
-	window.uiController.updateGeneratorStatus('loading', 'Generating ban list...');
-	
-	// Update status after a short delay (assuming generation is quick)
-	setTimeout(() => {
-		if (window.allBanEntries && window.allBanEntries.length > 0) {
-			window.uiController.updateGeneratorStatus('success', 
-				`Generated ${window.allBanEntries.length} ban entries successfully`);
-		} else {
-			window.uiController.updateGeneratorStatus('warning', 'No ban entries generated');
-		}
-	}, 500);
 });
 
-// Override the original match tester input handler
+// Set up match tester after UI is initialized
 document.addEventListener('DOMContentLoaded', () => {
 	const testerInput = document.getElementById('match-tester-input');
 	if (testerInput) {
-		// Remove the original oninput
-		testerInput.removeAttribute('oninput');
-		
 		// Add enhanced handler
 		testerInput.addEventListener('input', (e) => {
-			enhancedMatchTester(e.target.value, window.allBanEntries || []);
+			const inputValue = e.target.value;
+			const banEntries = window.allBanEntries || [];
+			
+			// Call the original match tester function
+			if (typeof window.matchTester === 'function') {
+				const matches = window.matchTester(inputValue, banEntries);
+				
+				// Update UI feedback
+				const outputTextarea = document.getElementById('match-tester-output');
+				if (outputTextarea) {
+					if (matches.length === 0) {
+						outputTextarea.style.borderColor = '#28a745'; // Green for no matches (good)
+					} else {
+						outputTextarea.style.borderColor = '#ffc107'; // Yellow for matches (warning)
+					}
+				}
+			}
 		});
 	}
 });

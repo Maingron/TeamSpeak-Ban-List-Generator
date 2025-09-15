@@ -182,6 +182,9 @@ function isValidQueryLength(fullQuery, type) {
 }
 
 function startSequentialProcess() {
+	// Clear previous entries to prevent duplicates
+	allBanEntries.length = 0;
+	
 	letters = expandLetters.handleLetterCollection(letters);
 	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(charsetCollection));
 	letters = reduceLetters.handleLetterCollection(letters, reduceLetters.mergeAllFromCharsetCollection(incompatibleLetters.teamspeak));
@@ -211,9 +214,17 @@ function startSequentialProcess() {
 
 	document.querySelector("#g-ybl").innerHTML = result2 + result1;
 
+	// Clear table before populating
+	if (window.tableOutput && window.tableOutput.clearTable) {
+		window.tableOutput.clearTable();
+	}
+
 	for(let aa of allBanEntries) {
-		tableOutput.renderTableEntry(aa[0], aa[1]);
+		if (window.tableOutput && window.tableOutput.renderTableEntry) {
+			window.tableOutput.renderTableEntry(aa[0], aa[1]);
+		}
 	}
 }
 
-startSequentialProcess();
+// Don't auto-start anymore - let UI controller handle this
+// startSequentialProcess();
