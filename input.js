@@ -158,6 +158,7 @@ const words = [
 		["nazi", reason.obscene],
 		["war", reason.obscene, 0b0111],
 		["fuck", reason.obscene],
+		["bang me", reason.obscene, 0b0001],
 		["bo+bs", reason.obscene, 0b0001],
 		["bo+bie", reason.obscene, 0b0001],
 		["penis", reason.obscene],
@@ -181,6 +182,7 @@ const words = [
 		["rape", reason.obscene, 0b0101],
 		["rapi", reason.obscene, 0b0101],
 		["slut", reason.obscene, 0b1101],
+		["teen se", reason.obscene, 0b0001],
 		["arse", reason.obscene, 0b1111],
 		["hitler", reason.obscene, 0b1001],
 		["ieg hei", reason.obscene, 0b1001],
@@ -188,6 +190,10 @@ const words = [
 		["sex", reason.obscene, 0b0111],
 		["cum", reason.obscene, 0b0111],
 		["cumdum", reason.obscene, 0b0101],
+		["cp sell", reason.obscene, 0b0101],
+		["child sell", reason.obscene, 0b0101],
+		["hild pred", reason.obscene, 0b0001],
+		["porn sell", reason.obscene, 0b0101],
 		["slave", reason.obscene, 0b0111],
 
 		// Advertisement
@@ -209,8 +215,10 @@ const words = [
 		["hub.co", reason.undefined, 0b1001],
 		["eos.co", reason.undefined, 0b1001],
 		["ube.co", reason.undefined, 0b1001],
+		["ube.xxx", reason.undefined, 0b1001],
 		["tu.be", reason.undefined, 0b1001],
 		["ox.to", reason.undefined, 0b1001],
+		["mega.nz", reason.undefined, 0b0001],
 
 		["url.at", reason.undefined, 0b1001],
 		["tly.co", reason.undefined, 0b1001],
