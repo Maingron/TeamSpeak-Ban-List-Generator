@@ -1,0 +1,11 @@
+/* PROJECT */
+    GitHub: https://github.com/Maingron/TeamSpeak-Ban-List-Generator
+    Website: https://maingron.github.io/TeamSpeak-Ban-List-Generator
+    For: https://www.teamspeak.com/
+    For: https://yat.qa/
+    For: ts3server://ts3.maingron.com?port=9987
+
+/* TEAM */
+    Developer: Maingron (Robin)
+    GitHub: https://github.com/Maingron
+    Website: https://maingron.com
