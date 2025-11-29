@@ -1,6 +1,9 @@
 # Maingrons teamspeak-ban-list generator
 This tools generates Regex Ban lists for TeamSpeak that you can import with YaTQA. ...These TeamSpeak limitations are crazy!
 
+**Official Repo**: https://github.com/Maingron/TeamSpeak-Ban-List-Generator  
+**Webapp**: https://maingron.github.io/TeamSpeak-Ban-List-Generator/
+
 ## How to
 After downloading and extracting, open the index.html file on your computer (with your browser). It will output a YaTQA file with ban rules (You'll have to save the text output into a file yourself, sorry!)
 
