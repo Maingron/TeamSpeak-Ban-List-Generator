@@ -38,6 +38,14 @@ body {
 			height: unset;
 		}
 	}
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		padding: 1em 0;
+		border-top: 1px solid;
+		margin-top: 2em;
+	}
 }
 
 * {
