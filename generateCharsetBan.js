@@ -54,16 +54,17 @@ var charsetCollection = [
 	// [["[𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏]"], reasons.characters.undefined],
 	// [["[𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃]"], reasons.characters.undefined],
 	// [["[ⲁⲃⲥⲇⲉ𝓯𝓰ⲏⲓ𝓳ⲕ𝓵ⲙⲛⲟⲣ𝓺ꞅ𝛓ⲧ𐌵𝓿ⲱⲭⲩⲍ]"], reasons.characters.undefined],
-	[["[ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ]"], reasons.characters.unclassified],
 	// [["[🄰🄱🄲🄳🄴🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉]"], reasons.characters.undefined],
 	// [["[🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩]"], reasons.characters.undefined],
 	[["[ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ]"], reasons.characters.circled],
-	[["[࿕࿖࿗࿘卍卐]"], reasons.characters.political],
+	[["[࿕࿖࿗࿘卍卐𑱰]"], reasons.characters.political],
 	[["[¦|]"], reasons.characters.pipes],
 	[["[＄﹩￡￠￥￦]"], reasons.characters.modifiedCurrency],
 	[["[₷₠₣₧₯₰₳₶₻ℳ]"], reasons.characters.outdatedCurrency],
 	[["[₹₤₡₥₦₨₩₪₫₭₮₱₲₴₵₸₺₼₽₾⃀£฿¢]"], reasons.characters.currency], // $€
 	[["[₿⟠]"], reasons.characters.cryptoCurrency],
+	[["[🂡🂢🂣🂤🂥🂦🂧🂨🂩🂪🂫🂬🂭🂮🃠🃡🃢🃣🃤🃥🃦🃧🃨🃩🃪🃫🃬🃭🃮🃯🃰🃱🃲🃳🃴🃵🂱🃁🃑🂲🃂🃒🂳🃃🃓🂴🃄🃔🂵🃅🃕🂶🃆🃖🂷🃇🃗🂸🃈🃘🂹🃉🃙🂺🃊🃚🂻🃋🃛🂼🃌🃜🂽🃍🃝🂾🃎🃞]"], reasons.characters.undefined],
+	[["[！＂＃％＆＇（）＊，－．／：；？＠！［＼］＿｛｝｟｠１２３４５６７８９＜＝＞ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ＾｀｜～￢￣￤]"], reasons.characters.fullWidth],
 	[["[ʼ]"], reasons.characters.unclassified]
 	// [["[ÁáÉéÍíÓóŐőÚúŰű]"], reasons.characters.hungarian],
 ];
