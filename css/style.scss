@@ -46,6 +46,34 @@ body {
 		border-top: 1px solid;
 		margin-top: 2em;
 	}
+
+	.table-container {
+		display: block;
+		overflow: auto;
+		width: 100%;
+
+		table {
+			tr {
+				&:nth-child(odd) {
+					background: #77777733;
+				}
+
+				td {
+					max-width: 75vw;
+					overflow: hidden;
+					overflow-wrap: anywhere;
+
+					&:last-child {
+						max-width: 50vw;
+					}
+				}
+
+				&:hover {
+					background: #77777766;
+				}
+			}
+		}
+	}
 }
 
 * {

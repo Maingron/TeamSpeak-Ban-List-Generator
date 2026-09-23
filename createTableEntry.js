@@ -1,6 +1,6 @@
 const TableOutput = function() {
 	let config = {
-		tableElement: document.querySelectorAll("table"),
+		tableElement: document.querySelectorAll("table tbody"),
 		tableHeader: document.querySelectorAll("table th"),
 		tableRow: document.querySelectorAll("table tr"),
 		tableCell: document.querySelectorAll("table td")
